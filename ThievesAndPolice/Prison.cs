@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,19 +9,36 @@ using System.Threading.Tasks;
 namespace ThievesAndPolice;
 internal class Prison
 {
-    static int possitionX = 10;
-    static int possitionY = 18;
-    static int possitionThiefX = 25;
-    static int possitionThiefY = 11;
-    static int possitionPoliceX = 1;
-    static int possitionPoliceY = 0;
+    static Random random = new Random();
 
-    static int[,] array2 =
+    static int possitionX = random.Next(1, 49);
+    static int possitionY = random.Next(0, 23);
+    static int possitionThiefX = random.Next(1, 49);
+    static int possitionThiefY = random.Next(0, 23);
+    static int possitionPoliceX = random.Next(1, 49);
+    static int possitionPoliceY = random.Next(0, 23);
+
+
+    static int[,] array()
     {
-        {possitionX, possitionY}
-    };
+        return new int[,]{
+            { RandomX(), RandomY() }
+        };
+    }
+    static int RandomX()
+    {
+        // Returnerar ett random nummer mellan 1 och 48
+        return random.Next(1, 49);
+    }
+    static int RandomY()
+    {
+        // Returnerar ett random nummer mellan 0 och 22
+        return random.Next(0, 23);
+    }
 
-    Citizen person = new Citizen("Christofer", 33, "Male", "Plånbok", false, false, array2);
+    Citizen person = new Citizen("Christofer", 33, "Male", "Plånbok", false, false, array());    // DENNA FÅR SAMMA POSSITION SOM PERSON 2
+    Citizen person2 = new Citizen("Koffe", 3, "Male", "Väska", false, false, array());           // DENNA FÅR SAMMA POSSITION SOM PERSON 1
+
     public void MovePatter()
     {
         Random rnd = new Random();
@@ -91,14 +109,15 @@ internal class Prison
 
         possitionX = movX;
         possitionY = movY;
-        array2[0, 0] = movX;
-        array2[0, 1] = movY;
+
+        array()[0, 0] = movX;
+        array()[0, 1] = movY;
 
 
         Console.WriteLine($"Medborgare: X: {possitionX}  Y: {possitionY}");
         Console.WriteLine($"TJUV: X: {possitionThiefX}  Y: {possitionThiefY}");
         Console.WriteLine($"Polis: X: {pX}  Y:{pY}");
-       
+
 
         for (int i = 0; i < 50; i++)
         {
@@ -121,7 +140,7 @@ internal class Prison
                         Console.Write("Y");
                         break;
                 }
-            }           
+            }
             else
                 Console.Write("#");
         }
@@ -148,19 +167,33 @@ internal class Prison
                             check = true;
                         }
                     }
-                    
-                    if (i == posX)
+
+                    if (i == posX && i != person.Possition[0, 0])
                     {
-                        if (j == posY)
+                        if (i == posX && i == person.Possition[0, 0])
+                            check = false;
+                        else if (i == pX && j == pY && i == posX && j == posY)
+                        {
+
+                        }
+                        else if (j == posY)
                         {
                             Console.Write("T");
                             check = true;
                         }
                     }
-                    
+
                     if (i == pX)
                     {
-                        if (j == pY)
+                        if (i == pX && i == person.Possition[0, 0] && j == pY && j == person.Possition[0, 1])
+                        {                           
+                           
+                        }
+                        else if(i == pX && j == pY && i == posX && j == posY)
+                        {
+                            Console.WriteLine("TJUV TILL FÄNGELSE"); // här kommer logit för när en tjuv blir tagen
+                        }
+                        else if (j == pY)
                         {
                             Console.Write("P");
                             check = true;
