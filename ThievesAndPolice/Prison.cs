@@ -27,12 +27,12 @@ internal class Prison
     }
     static int RandomX()
     {
-        // Returnerar ett random nummer mellan 1 och 48
+        // Returnerar ett random nummer mellan 1 och 48 för X-axeln
         return random.Next(1, 49);
     }
     static int RandomY()
     {
-        // Returnerar ett random nummer mellan 0 och 22
+        // Returnerar ett random nummer mellan 0 och 22 för Y-axeln
         return random.Next(0, 23);
     }
 
