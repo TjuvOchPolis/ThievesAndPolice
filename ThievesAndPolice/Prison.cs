@@ -102,7 +102,7 @@ internal class Prison
 
         for (int i = 0; i < 50; i++)
         {
-            if (i == 2)
+            if (i == 2 || i == 7)
                 Console.Write(" ");
             else if (i == 3 || i == 4 || i == 5 || i == 6)
             {
@@ -121,9 +121,7 @@ internal class Prison
                         Console.Write("Y");
                         break;
                 }
-            }
-            else if (i == 7)
-                Console.Write(" ");
+            }           
             else
                 Console.Write("#");
         }
@@ -181,7 +179,7 @@ internal class Prison
         Console.WriteLine();
         for (int i = 0; i < 50; i++)
         {
-            if (i == 1)
+            if (i == 1 || i == 8)
                 Console.Write(" ");
             else if (i == 2 || i == 3 || i == 4 || i == 5 || i == 6 || i == 7)
             {
@@ -207,8 +205,6 @@ internal class Prison
                         break;
                 }
             }
-            else if (i == 8)
-                Console.Write(" ");
             else
                 Console.Write("#");
         }
