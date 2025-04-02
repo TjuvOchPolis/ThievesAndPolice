@@ -175,7 +175,9 @@ namespace ThievesAndPolice
                         {
                             if (j == person.Possition[0, 1])
                             {
+                                Console.ForegroundColor = ConsoleColor.Green;
                                 Console.Write("C"); // Logik för att printa ut Polis, Tjuv, Medborgare
+                                Console.ResetColor();
                                 check = true;
                             }
                         }
@@ -190,7 +192,9 @@ namespace ThievesAndPolice
                             }
                             else if (j == posY)
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.Write("T");
+                                Console.ResetColor();
                                 check = true;
                             }
                         }
@@ -207,7 +211,9 @@ namespace ThievesAndPolice
                             }
                             else if (j == pY)
                             {
+                                Console.ForegroundColor = ConsoleColor.Blue;
                                 Console.Write("P");
+                                Console.ResetColor();
                                 check = true;
                             }
                         }
