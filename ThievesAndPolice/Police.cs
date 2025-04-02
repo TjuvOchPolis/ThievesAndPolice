@@ -7,13 +7,17 @@ using System.Threading.Tasks;
 namespace ThievesAndPolice;
 internal class Police : Person
 {
-    public Police(string name, int age, Queue<Inventory> inventory, string gender, bool arrest) :base(name, age, inventory, gender)
+    public Police(string name, int age, List<Inventory> inventory, string gender, bool arrest) :base(name, age, inventory, gender)
     {
-        Arrest = arrest;
+        IsArresting = arrest;
     }
 
-    public bool Arrest { get; set; }
+    public bool IsArresting { get; set; }
+    public bool MeetCitizen { get; set; }
 
-
+    public override void Activity()
+    {
+        //kod
+    }
 
 }

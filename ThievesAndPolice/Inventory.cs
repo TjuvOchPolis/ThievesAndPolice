@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 namespace ThievesAndPolice;
 internal class Inventory
 {
-	private int myVar;
+	public string Item {  get; set; }
 
-	public int MyProperty
-	{
-		get { return myVar; }
-		set { myVar = value; }
-	}
-
+    public Inventory(string item)
+    {
+        Item = item;
+    }
 }
