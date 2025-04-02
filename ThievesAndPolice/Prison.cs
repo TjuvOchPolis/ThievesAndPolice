@@ -269,7 +269,7 @@ internal class Prison
 
     }
 
-    int Possition(string angle, int number)
+    public int Possition(string angle, int number)
     {
         Random rnd = new Random();
 
