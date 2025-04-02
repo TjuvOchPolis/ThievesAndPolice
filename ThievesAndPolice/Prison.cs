@@ -36,6 +36,7 @@ internal class Prison
         return random.Next(0, 23);
     }
 
+    List<Person> persons = new List<Person>();
     Citizen person = new Citizen("Christofer", 33, "Male", "Plånbok", false, false, array());    // DENNA FÅR SAMMA POSSITION SOM PERSON 2
     Citizen person2 = new Citizen("Koffe", 3, "Male", "Väska", false, false, array());           // DENNA FÅR SAMMA POSSITION SOM PERSON 1
 
