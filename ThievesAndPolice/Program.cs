@@ -148,9 +148,6 @@ namespace ThievesAndPolice
             for (int j = 0; j < 23; j++)
             {
                 Console.WriteLine();
-                        int number1 = 0;
-                        int number2 = 0;
-                        int number3 = 0;
                 for (int i = 0; i < 50; i++)
                 {
                     if (i == 0)
@@ -159,6 +156,10 @@ namespace ThievesAndPolice
                         Console.Write("#");
                     else
                     {
+                        int number1 = 0;
+                        int number2 = 0;
+                        int number3 = 0;
+
                         bool check = false;
 
                         foreach (Person person in persons)
@@ -191,7 +192,8 @@ namespace ThievesAndPolice
                                     }
                                     else if (i == person.Possition[0, 0] && i == person2.Possition[0, 0] && j == person.Possition[0, 1] && j == person2.Possition[0, 1] && person2 is Police)
                                     {
-
+                                        number2++;
+                                        check = true;
                                     }
                                     else if (j == person.Possition[0, 1] && number2 < 1 && j != person2.Possition[0, 1] && person2 is not Citizen)
                                     {
@@ -207,10 +209,12 @@ namespace ThievesAndPolice
                                 {
                                     if (i == person.Possition[0, 0] && i == person2.Possition[0, 0] && j == person.Possition[0, 1] && j == person2.Possition[0, 1] && person2 is Citizen)
                                     {
+                                        check = true;
                                         number3++;
                                     }
                                     else if (i == person.Possition[0, 0] && i == person2.Possition[0, 0] && j == person.Possition[0, 1] && j == person2.Possition[0, 1] && person2 is Thieve)
                                     {
+                                        check = true;
                                         number3++;
                                         Console.WriteLine("TJUV TILL FÄNGELSE"); // här kommer logit för när en tjuv blir tagen
                                     }
