@@ -52,7 +52,7 @@ namespace ThievesAndPolice
             while (true)
             {
                 Console.Clear();
-                prison.MovePatter();
+                MovePatter();
                 Console.ReadKey();
             }
 
@@ -61,7 +61,7 @@ namespace ThievesAndPolice
 
         }
 
-        public void MovePatter()
+        static public void MovePatter()
         {
             Random rnd = new Random();
 
@@ -282,7 +282,7 @@ namespace ThievesAndPolice
 
 
 
-        public int Possition(string angle, int number)
+        static public int Possition(string angle, int number)
         {
             Random rnd = new Random();
 

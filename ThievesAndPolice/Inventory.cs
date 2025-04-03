@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 namespace ThievesAndPolice;
 internal class Inventory
 {
-    public string ItemName { get; set; }
-    
+    public string Item { get; set; }
+
+    public Inventory(string item)
+    {
+        Item = item;
+    }
+
 }
