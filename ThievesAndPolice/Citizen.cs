@@ -18,12 +18,25 @@ internal class Citizen : Person
     public bool IsRobbed { get; set; }
     public bool MeetPolice { get; set; }
 
-    public override void Activity()
+    public override string Activity()
     {
         if (IsRobbed)
-            Console.WriteLine("Rånad");
+        {
+            IsRobbed = false;   
+            return "Rånad";
+        }
+
         if(MeetPolice)
-            Console.WriteLine("Hälsa");
+        {
+            MeetPolice = false;
+            return ($"{Name} hälsar tillbaka");
+        }
+
+        else
+        {
+            return null;
+        }
+ 
     }
 
 }

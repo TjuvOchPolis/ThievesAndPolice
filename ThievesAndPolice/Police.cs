@@ -15,9 +15,17 @@ internal class Police : Person
     public bool IsArresting { get; set; }
     public bool MeetCitizen { get; set; }
 
-    public override void Activity()
+    public override string Activity()
     {
-        //kod
+        if (MeetCitizen)
+        {
+            MeetCitizen = false;
+            return $"{Name} hälsar på citizen. ";
+        }
+        else
+        {
+            return null;
+        }
     }
 
 }

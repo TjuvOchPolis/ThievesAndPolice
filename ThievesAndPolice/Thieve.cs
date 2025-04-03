@@ -15,8 +15,9 @@ internal class Thieve : Person
     public bool IsRobbing { get; set; }
 
 
-    public override void Activity()
+    public override string Activity()
     {
-        //kod
+        IsArrested = true;
+        return $"{Name} has been arrested!";
     }
 }

@@ -28,22 +28,22 @@ namespace ThievesAndPolice
             {
                 new Citizen("Hej", 24, items, "male", false, false),
                 new Police("ADA", 48, items, "male", false),
-                new Thieve("asd", 32, items, "male", false),
+                new Thieve("Kristoffer", 32, items, "male", false),
                 new Citizen("KDA", 12, items, "male", false, false),
                 new Police("Poaes", 49, items, "male", false),
-                new Thieve ("Jasd", 56, items, "male", false),
+                new Thieve ("Kristoffer", 56, items, "male", false),
                 new Citizen("Hej", 24, items, "male", false, false),
                 new Police("ADA", 48, items, "male", false),
-                new Thieve("asd", 32, items, "male", false),
+                new Thieve("Christoffer", 32, items, "male", false),
                 new Citizen("KDA", 12, items, "male", false, false),
                 new Police("Poaes", 49, items, "male", false),
-                new Thieve ("Jasd", 56, items, "male", false),
+                new Thieve ("Christoffer", 56, items, "male", false),
                 new Citizen("Hej", 24, items, "male", false, false),
                 new Police("ADA", 48, items, "male", false),
-                new Thieve("asd", 32, items, "male", false),
+                new Thieve("Christoffer", 32, items, "male", false),
                 new Citizen("KDA", 12, items, "male", false, false),
                 new Police("Poaes", 49, items, "male", false),
-                new Thieve ("Jasd", 56, items, "male", false),
+                new Thieve ("Christoffer", 56, items, "male", false),
             };
 
             //Sätter en startposition för samtliga i people-listan
@@ -53,6 +53,7 @@ namespace ThievesAndPolice
             while (true)
             {
                 Console.Clear();
+
                 for (int i = 0; i < people.Count; i++)
                 {
                     //Om people[index i] är en polis så händer följande: 
@@ -69,9 +70,21 @@ namespace ThievesAndPolice
                                     police.PositionY == thief.PositionY)
                                 {
                                     //Thief blir arrested.
-                                    thief.IsArrested = true;
-                                    Console.WriteLine($"{thief.Name} has been arrested!");
-                                    thief.Activity();
+                                    SetCursor(police.Activity());
+                                    SetCursor(thief.Activity());
+
+                                }
+                            }
+                            else if (people[j] is Citizen citizen)
+                            {
+                                if(citizen.PositionX == police.PositionX &&
+                                   citizen.PositionY == police.PositionY)
+                                {
+
+                                    citizen.MeetPolice = true;
+                                    police.MeetCitizen = true;
+                                    SetCursor(police.Activity());
+                                    SetCursor(citizen.Activity());
                                 }
                             }
                         }
@@ -114,14 +127,14 @@ namespace ThievesAndPolice
 
 
                 //Fängelse målas
-                for (int i = 0; i < 10; i++)
+                /*for (int i = 0; i < 10; i++)
                 {
                     for (int j = 0; j < 10; j++)
                     {
                         Console.Write(prison1[i, j]);
                     }
                     Console.WriteLine();
-                }
+                }*/
 
                 foreach (var person in people)
                 {
@@ -148,6 +161,12 @@ namespace ThievesAndPolice
                 Console.ReadKey();
 
             }
+        }
+
+        static void SetCursor(string cursor)
+        {
+            Console.SetCursorPosition(65, Console.CursorLeft);
+            Console.WriteLine(cursor);
         }
     }
 }

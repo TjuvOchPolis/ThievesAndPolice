@@ -24,11 +24,10 @@ internal class Person
     public int PositionY { get; set; }
     public int PositionX { get; set; }
 
-    public virtual void Activity()
+    public virtual string Activity()
     {
-        //kod
+        return null;
     }
-
     public void StartPosition()
     {
         Random rnd = new Random();
