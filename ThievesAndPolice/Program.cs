@@ -1,4 +1,6 @@
 ﻿using System;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ThievesAndPolice
 {
@@ -14,6 +16,10 @@ namespace ThievesAndPolice
         static int possitionPoliceY = random.Next(0, 23);
 
         static List<Person> persons = new List<Person>();
+
+        static public bool kont = false;
+        static string NAMES = "";
+
         static void Main(string[] args)
         {
             Prison prison = new Prison();
@@ -47,6 +53,7 @@ namespace ThievesAndPolice
             persons.Add(new Thieve("Svensson", 16, "Female", inventory, false, array()));
             persons.Add(new Thieve("Svensson", 16, "Female", inventory, false, array()));
             persons.Add(new Thieve("Svensson", 16, "Female", inventory, false, array()));
+
             persons.Add(new Police("Johansson", 22, "Female", inventory, false, array()));
             //persons.Add(new Citizen("Albin", 11, "Male", inventory, false, false, array()));
 
@@ -57,6 +64,12 @@ namespace ThievesAndPolice
             {
                 Console.Clear();
                 MovePatter();
+                if (kont)
+                {
+                    Console.WriteLine("ITEM SNODD");
+                    kont = false;
+                    Console.WriteLine(NAMES);
+                }
                 Console.ReadKey();
             }
 
@@ -135,6 +148,9 @@ namespace ThievesAndPolice
             for (int j = 0; j < 23; j++)
             {
                 Console.WriteLine();
+                        int number1 = 0;
+                        int number2 = 0;
+                        int number3 = 0;
                 for (int i = 0; i < 50; i++)
                 {
                     if (i == 0)
@@ -144,14 +160,11 @@ namespace ThievesAndPolice
                     else
                     {
                         bool check = false;
-                        int number1 = 0;
-                        int number2 = 0;
-                        int number3 = 0;
 
                         foreach (Person person in persons)
                         {
                             foreach (Person person2 in persons)
-                            {
+                            {                                
                                 if (i == person.Possition[0, 0] && person is Citizen)
                                 {
                                     if (j == person.Possition[0, 1] && number1 < 1)
@@ -168,13 +181,19 @@ namespace ThievesAndPolice
                                 {
                                     if (i == person.Possition[0, 0] && i == person2.Possition[0, 0] && j == person.Possition[0, 1] && j == person2.Possition[0, 1] && person2 is Citizen)
                                     {
-                                        Console.WriteLine("TJUV SNOR");
+                                        //Logik om Medborgare och Tjuv hamnar på samma kordinater, så snor tjuven om det finns saker att sno
+                                        number2++;
+                                        person.Inventory.Add(person2.Inventory[0]);
+                                        person2.Inventory.RemoveAt(0);
+                                        kont = true;
+                                        check = true;
+                                        NAMES = $"Namn: {person.Name} - {person2.Name}, Kordinat: X:{person.Possition[0, 0]} Y:{person.Possition[0, 1]} - X:{person2.Possition[0, 0]} Y:{person2.Possition[0, 1]}";
                                     }
-                                    else if (i == person.Possition[0, 0] && j == person.Possition[0, 1] && i == person2.Possition[0, 0] && j == person2.Possition[0, 1])
+                                    else if (i == person.Possition[0, 0] && i == person2.Possition[0, 0] && j == person.Possition[0, 1] && j == person2.Possition[0, 1] && person2 is Police)
                                     {
-                                        
+
                                     }
-                                    else if (j == person.Possition[0, 1] && number2 < 1)
+                                    else if (j == person.Possition[0, 1] && number2 < 1 && j != person2.Possition[0, 1] && person2 is not Citizen)
                                     {
                                         number2++;
                                         Console.ForegroundColor = ConsoleColor.Red;
@@ -186,15 +205,16 @@ namespace ThievesAndPolice
 
                                 if (i == person.Possition[0, 0] && person is Police)
                                 {
-                                    if (i == person.Possition[0, 0] && i == person2.Possition[0, 0] && j == person.Possition[0, 1] && j == person2.Possition[0, 1])
+                                    if (i == person.Possition[0, 0] && i == person2.Possition[0, 0] && j == person.Possition[0, 1] && j == person2.Possition[0, 1] && person2 is Citizen)
                                     {
-
+                                        number3++;
                                     }
-                                    else if (i == person.Possition[0, 0] && j == person.Possition[0, 1] && i == person2.Possition[0, 0] && j == person2.Possition[0, 1])
+                                    else if (i == person.Possition[0, 0] && i == person2.Possition[0, 0] && j == person.Possition[0, 1] && j == person2.Possition[0, 1] && person2 is Thieve)
                                     {
+                                        number3++;
                                         Console.WriteLine("TJUV TILL FÄNGELSE"); // här kommer logit för när en tjuv blir tagen
                                     }
-                                    else if (j == person.Possition[0, 1] && number3 < 1)
+                                    else if (j == person.Possition[0, 1] && number3 < 1 && j != person2.Possition[0, 1])
                                     {
                                         number3++;
                                         Console.ForegroundColor = ConsoleColor.Blue;
@@ -270,8 +290,6 @@ namespace ThievesAndPolice
             Console.WriteLine();
             for (int i = 0; i < 10; i++)
                 Console.Write("#");
-
-
 
         }
 
