@@ -13,6 +13,7 @@ namespace ThievesAndPolice
         static int possitionPoliceX = random.Next(1, 49);
         static int possitionPoliceY = random.Next(0, 23);
 
+        static List<Person> persons = new List<Person>();
         static void Main(string[] args)
         {
             Prison prison = new Prison();
@@ -38,13 +39,12 @@ namespace ThievesAndPolice
             inventory.Add(new Inventory("Pengar"));
             inventory.Add(new Inventory("Klocka"));
 
-            List<Person> persons = new List<Person>();
-            persons.Add(new Citizen("Christofer", 33, "Male", inventory, false, false, array()));   
-            persons.Add(new Citizen("Koffe", 3, "Male", inventory, false, false, array()));           
-            persons.Add(new Citizen("Lisa", 58, "Female", inventory, false, false, array()));           
-            persons.Add(new Thieve("Svensson", 16, "Female", inventory, false, array()));           
-            persons.Add(new Police("Johansson", 22, "Female", inventory, false,  array()));          
-            persons.Add(new Citizen("Albin", 11, "Male", inventory, false, false, array()));         
+            persons.Add(new Citizen("Christofer", 33, "Male", inventory, false, false, array()));
+            persons.Add(new Citizen("Koffe", 3, "Male", inventory, false, false, array()));
+            persons.Add(new Citizen("Lisa", 58, "Female", inventory, false, false, array()));
+            persons.Add(new Thieve("Svensson", 16, "Female", inventory, false, array()));
+            persons.Add(new Police("Johansson", 22, "Female", inventory, false, array()));
+            persons.Add(new Citizen("Albin", 11, "Male", inventory, false, false, array()));
 
 
 
@@ -92,7 +92,7 @@ namespace ThievesAndPolice
                 }
             }
 
-            int posX = Possition("X", possitionThiefX); //tjuv
+            int posX = Possition("X", possitionThiefX); //Tjuv
             int posY = Possition("Y", possitionThiefY);
             possitionThiefX = posX;
             possitionThiefY = posY;
@@ -101,42 +101,19 @@ namespace ThievesAndPolice
             possitionPoliceX = pX;
             possitionPoliceY = pY;
 
-            int movX = 0;
-            int movY = 0;
+            foreach (Person person in persons)
+            {
 
-            if (moveX == -1)
-                movX = possitionX - 1;
-            else if (moveX == 1)
-                movX = possitionX + 1;
-            else
-                movX = possitionX;
-
-            if (moveY == -1)
-                movY = possitionY - 1;
-            else if (moveY == 1)
-                movY = possitionY + 1;
-            else
-                movY = possitionY;
+                person.Possition[0, 0] = Possition("X" , person.Possition[0, 0]);
+                person.Possition[0, 1] = Possition("X", person.Possition[0, 1]);
+                //possitionX = peopleX;
+                //possitionY = peopleY;
+            }
 
 
-            if (movX == 0)
-                movX = 1;
-            else if (movX == 49)
-                movX = 48;
-
-            if (movY == 0)
-                movY = 1;
-            else if (movY == 23)
-                movY = 22;
-
-            possitionX = movX;
-            possitionY = movY;
-
-            array()[0, 0] = movX;
-            array()[0, 1] = movY;
 
 
-            Console.WriteLine($"Medborgare: X: {possitionX}  Y: {possitionY}");
+                Console.WriteLine($"Medborgare: X: {possitionX}  Y: {possitionY}");
             Console.WriteLine($"TJUV: X: {possitionThiefX}  Y: {possitionThiefY}");
             Console.WriteLine($"Polis: X: {pX}  Y:{pY}");
 
@@ -180,6 +157,8 @@ namespace ThievesAndPolice
                         Console.Write("#");
                     else
                     {
+
+                       
                         bool check = false;
                         if (i == person.Possition[0, 0])
                         {
@@ -342,6 +321,7 @@ namespace ThievesAndPolice
                 move = number;
 
 
+            // kontroller för att inte få pjäsen att hamna utanför
             if (angle == "X")
             {
                 if (move < 1)
