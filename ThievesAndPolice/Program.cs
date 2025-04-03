@@ -8,13 +8,6 @@ namespace ThievesAndPolice
     {
         static Random random = new Random();
 
-        static int possitionX = random.Next(1, 49);
-        static int possitionY = random.Next(0, 23);
-        static int possitionThiefX = random.Next(1, 49);
-        static int possitionThiefY = random.Next(0, 23);
-        static int possitionPoliceX = random.Next(1, 49);
-        static int possitionPoliceY = random.Next(0, 23);
-
         static List<Person> persons = new List<Person>();
 
         static public bool kont = false;
@@ -70,8 +63,8 @@ namespace ThievesAndPolice
                     kont = false;
                     Console.WriteLine(NAMES);
                     Console.WriteLine($"SAKER KVAR: {längd}");
+                    Console.ReadKey();
                 }
-                Console.ReadKey();
             }
 
 
@@ -166,7 +159,7 @@ namespace ThievesAndPolice
                         foreach (Person person in persons)
                         {
                             foreach (Person person2 in persons)
-                            {                                
+                            {
                                 if (i == person.Possition[0, 0] && person is Citizen)
                                 {
                                     if (j == person.Possition[0, 1] && number1 < 1)
@@ -186,15 +179,26 @@ namespace ThievesAndPolice
                                         //Logik om Medborgare och Tjuv hamnar på samma kordinater, så snor tjuven om det finns saker att sno
                                         if (person2.Inventory != null)
                                         {
-                                            längd = person2.Inventory.Count;
                                             number2++;
-                                            person.Inventory.Add(person2.Inventory[0]);
-                                            person2.Inventory.RemoveAt(0);
+                                            int numb = 0;
+                                            foreach (var item in person2.Inventory.ToList())
+                                            {
+                                                if (numb == 0)
+                                                {
+                                                   
+                                                    person.Inventory.Add(new Inventory(item.Item));
+                                                    person2.Inventory.RemoveAt(0);
+
+                                                }
+                                                numb++;
+                                            }
+                                            
+                                            längd = person2.Inventory.Count;
                                             kont = true;
                                             check = true;
                                             NAMES = $"Namn: {person.Name} - {person2.Name}, Kordinat: X:{person.Possition[0, 0]} Y:{person.Possition[0, 1]} - X:{person2.Possition[0, 0]} Y:{person2.Possition[0, 1]}";
                                         }
-                                                                                  
+
                                     }
                                     else if (i == person.Possition[0, 0] && i == person2.Possition[0, 0] && j == person.Possition[0, 1] && j == person2.Possition[0, 1] && person2 is Police)
                                     {
