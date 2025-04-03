@@ -16,6 +16,7 @@ internal class Person
         Gender = gender;
     }
 
+
     public string Name { get; set; }
     public int Age { get; set; }
     List<Inventory> Inventory { get; set; }
@@ -46,6 +47,5 @@ internal class Person
             PositionY = 0;
         else if (decider == 4)
             PositionY = 24;
-
     }
 }

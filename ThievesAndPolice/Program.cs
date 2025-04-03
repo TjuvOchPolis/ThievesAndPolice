@@ -10,6 +10,9 @@ namespace ThievesAndPolice
             City city1 = new City();
             Prison prison = new Prison();
             Random rnd = new Random();
+            int[,] thiefArray = new int[20, 2];
+            int[,] policeArray = new int[20, 2];
+            int[,] citizenArray = new int[20, 2];
 
             char[,] city = city1.BuildCity();
             char[,] prison1 = prison.BuildPrison();
@@ -34,7 +37,8 @@ namespace ThievesAndPolice
                 new Thieve("asd", 32, items, "male", false),
                 new Citizen("KDA", 12, items, "male", false, false),
                 new Police("Poaes", 49, items, "male", false),
-                new Thieve ("Jasd", 56, items, "male", false),new Citizen("Hej", 24, items, "male", false, false),
+                new Thieve ("Jasd", 56, items, "male", false),
+                new Citizen("Hej", 24, items, "male", false, false),
                 new Police("ADA", 48, items, "male", false),
                 new Thieve("asd", 32, items, "male", false),
                 new Citizen("KDA", 12, items, "male", false, false),
@@ -44,18 +48,40 @@ namespace ThievesAndPolice
 
             //Sätter en startposition för samtliga i people-listan
             foreach (Person person in people)
-            {
                 person.StartPosition();
-            }
 
             while (true)
             {
                 Console.Clear();
-                for (int i = 0; i < 25; i++) // går igenom all 25 kolumner i city[,]
+                for (int i = 0; i < people.Count; i++)
+                {
+                    //Om people[index i] är en polis så händer följande: 
+                    if (people[i] is Police police)
+                    {
+                        //Går igenom alla personer i listan [people]
+                        for (int j = 0; j < people.Count; j++)
+                        {
+                            //Om people[index j] är en thieve och inte arrested händer följande: 
+                            if (people[j] is Thieve thief && !thief.IsArrested)
+                            {
+                                //Om police och thief har samma x och y position händer följande: 
+                                if (police.PositionX == thief.PositionX &&
+                                    police.PositionY == thief.PositionY)
+                                {
+                                    //Thief blir arrested.
+                                    thief.IsArrested = true;
+                                    Console.WriteLine($"{thief.Name} has been arrested!");
+                                    thief.Activity();
+                                }
+                            }
+                        }
+                    }
+                }
+                for (int i = 0; i < 25; i++) // går igenom all 25 rader i city[,]
                 {
                     for (int j = 0; j < 50; j++) //går igenom alla 50 rader i city[,]
                     {
-                        //Symbol representerar antingen chars i arrayen i City-Klassen om in person är Citizen, Police eller Thief
+                        //Symbol representerar antingen chars i arrayen i City-Klassen om inte person är Citizen, Police eller Thief
                         char symbol = city[i, j];
 
                         foreach (Person person in people)
@@ -66,7 +92,9 @@ namespace ThievesAndPolice
                                 symbol = 'P';
                             else if (person.PositionX == i && person.PositionY == j && person is Thieve)
                                 symbol = 'T';
+
                         }
+
 
                         //Ändrar färg på symbolen för invånare
                         if (symbol == 'C')
@@ -77,11 +105,14 @@ namespace ThievesAndPolice
                             Console.ForegroundColor = ConsoleColor.Red;
 
                         Console.Write(symbol);
+
                         Console.ResetColor();
                     }
                     Console.WriteLine();
                 }
-                
+
+
+
                 //Fängelse målas
                 for (int i = 0; i < 10; i++)
                 {
@@ -90,11 +121,6 @@ namespace ThievesAndPolice
                         Console.Write(prison1[i, j]);
                     }
                     Console.WriteLine();
-                }
-
-                foreach (Person person in people)
-                {
-                    Console.WriteLine($"{person.Name} - Y-Axel: {person.PositionY} X-Axel: {person.PositionX}");
                 }
 
                 foreach (var person in people)
@@ -119,7 +145,8 @@ namespace ThievesAndPolice
                     person.PositionY = Math.Clamp(person.PositionY, 1, 48);
                 }
 
-                Thread.Sleep(500);
+                Console.ReadKey();
+
             }
         }
     }
