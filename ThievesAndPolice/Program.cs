@@ -19,6 +19,7 @@ namespace ThievesAndPolice
 
         static public bool kont = false;
         static string NAMES = "";
+        static int längd = 0;
 
         static void Main(string[] args)
         {
@@ -53,7 +54,6 @@ namespace ThievesAndPolice
             persons.Add(new Thieve("Svensson", 16, "Female", inventory, false, array()));
             persons.Add(new Thieve("Svensson", 16, "Female", inventory, false, array()));
             persons.Add(new Thieve("Svensson", 16, "Female", inventory, false, array()));
-
             persons.Add(new Police("Johansson", 22, "Female", inventory, false, array()));
             //persons.Add(new Citizen("Albin", 11, "Male", inventory, false, false, array()));
 
@@ -69,6 +69,7 @@ namespace ThievesAndPolice
                     Console.WriteLine("ITEM SNODD");
                     kont = false;
                     Console.WriteLine(NAMES);
+                    Console.WriteLine($"SAKER KVAR: {längd}");
                 }
                 Console.ReadKey();
             }
@@ -183,12 +184,17 @@ namespace ThievesAndPolice
                                     if (i == person.Possition[0, 0] && i == person2.Possition[0, 0] && j == person.Possition[0, 1] && j == person2.Possition[0, 1] && person2 is Citizen)
                                     {
                                         //Logik om Medborgare och Tjuv hamnar på samma kordinater, så snor tjuven om det finns saker att sno
-                                        number2++;
-                                        person.Inventory.Add(person2.Inventory[0]);
-                                        person2.Inventory.RemoveAt(0);
-                                        kont = true;
-                                        check = true;
-                                        NAMES = $"Namn: {person.Name} - {person2.Name}, Kordinat: X:{person.Possition[0, 0]} Y:{person.Possition[0, 1]} - X:{person2.Possition[0, 0]} Y:{person2.Possition[0, 1]}";
+                                        if (person2.Inventory != null)
+                                        {
+                                            längd = person2.Inventory.Count;
+                                            number2++;
+                                            person.Inventory.Add(person2.Inventory[0]);
+                                            person2.Inventory.RemoveAt(0);
+                                            kont = true;
+                                            check = true;
+                                            NAMES = $"Namn: {person.Name} - {person2.Name}, Kordinat: X:{person.Possition[0, 0]} Y:{person.Possition[0, 1]} - X:{person2.Possition[0, 0]} Y:{person2.Possition[0, 1]}";
+                                        }
+                                                                                  
                                     }
                                     else if (i == person.Possition[0, 0] && i == person2.Possition[0, 0] && j == person.Possition[0, 1] && j == person2.Possition[0, 1] && person2 is Police)
                                     {
