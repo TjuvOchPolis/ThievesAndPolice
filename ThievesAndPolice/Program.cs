@@ -104,7 +104,7 @@ namespace ThievesAndPolice
             foreach (Person person in persons)
             {
 
-                person.Possition[0, 0] = Possition("X" , person.Possition[0, 0]);
+                person.Possition[0, 0] = Possition("X", person.Possition[0, 0]);
                 person.Possition[0, 1] = Possition("X", person.Possition[0, 1]);
                 //possitionX = peopleX;
                 //possitionY = peopleY;
@@ -113,7 +113,7 @@ namespace ThievesAndPolice
 
 
 
-                Console.WriteLine($"Medborgare: X: {possitionX}  Y: {possitionY}");
+            Console.WriteLine($"Medborgare: X: {possitionX}  Y: {possitionY}");
             Console.WriteLine($"TJUV: X: {possitionThiefX}  Y: {possitionThiefY}");
             Console.WriteLine($"Polis: X: {pX}  Y:{pY}");
 
@@ -157,53 +157,55 @@ namespace ThievesAndPolice
                         Console.Write("#");
                     else
                     {
-
-                       
-                        bool check = false;
-                        if (i == person.Possition[0, 0])
+                        foreach (Person person in persons)
                         {
-                            if (j == person.Possition[0, 1])
-                            {
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                Console.Write("C"); // Logik för att printa ut Polis, Tjuv, Medborgare
-                                Console.ResetColor();
-                                check = true;
-                            }
-                        }
 
-                        if (i == posX && i != person.Possition[0, 0])
-                        {
-                            if (i == posX && i == person.Possition[0, 0])
-                                check = false;
-                            else if (i == pX && j == pY && i == posX && j == posY)
+                            bool check = false;
+                            if (i == person.Possition[0, 0] && person is Person)
                             {
+                                if (j == person.Possition[0, 1])
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.Write("C"); // Logik för att printa ut Polis, Tjuv, Medborgare
+                                    Console.ResetColor();
+                                    check = true;
+                                }
+                            }
 
-                            }
-                            else if (j == posY)
+                            if (i == posX && i != person.Possition[0, 0] && person is Thieve)
                             {
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.Write("T");
-                                Console.ResetColor();
-                                check = true;
-                            }
-                        }
+                                if (i == posX && i == person.Possition[0, 0])
+                                    check = false;
+                                else if (i == pX && j == pY && i == posX && j == posY)
+                                {
 
-                        if (i == pX)
-                        {
-                            if (i == pX && i == person.Possition[0, 0] && j == pY && j == person.Possition[0, 1])
-                            {
+                                }
+                                else if (j == posY)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.Write("T");
+                                    Console.ResetColor();
+                                    check = true;
+                                }
+                            }
 
-                            }
-                            else if (i == pX && j == pY && i == posX && j == posY)
+                            if (i == pX && person is Police)
                             {
-                                Console.WriteLine("TJUV TILL FÄNGELSE"); // här kommer logit för när en tjuv blir tagen
-                            }
-                            else if (j == pY)
-                            {
-                                Console.ForegroundColor = ConsoleColor.Blue;
-                                Console.Write("P");
-                                Console.ResetColor();
-                                check = true;
+                                if (i == pX && i == person.Possition[0, 0] && j == pY && j == person.Possition[0, 1])
+                                {
+
+                                }
+                                else if (i == pX && j == pY && i == posX && j == posY)
+                                {
+                                    Console.WriteLine("TJUV TILL FÄNGELSE"); // här kommer logit för när en tjuv blir tagen
+                                }
+                                else if (j == pY)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Blue;
+                                    Console.Write("P");
+                                    Console.ResetColor();
+                                    check = true;
+                                }
                             }
                         }
 
