@@ -9,7 +9,7 @@ using System.Xml.Linq;
 namespace ThievesAndPolice;
 internal class Citizen : Person
 {
-    public Citizen(string name, int age, string gender, string itemName, bool isRobbed, bool meetPolice, int[,] possition) : base(name, age, gender, itemName, possition)
+    public Citizen(string name, int age, string gender, List<Inventory> inventory, bool isRobbed, bool meetPolice, int[,] possition) : base(name, age, gender, inventory, possition)
     {
         IsRobbed = isRobbed;
         MeetPolice = meetPolice;

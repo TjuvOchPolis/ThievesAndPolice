@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace ThievesAndPolice;
 internal class Person : Inventory
 {
-    public Person(string name, int age, string gender, string itemName, int[,] possition) : base(itemName)
+    public Person(string name, int age, string gender, List<Inventory> inventory, int[,] possition)
     {
         Name = name;
         Age = age;
-        //Inventory = inventory;
+        Inventory = inventory;
         Gender = gender;
         Possition = possition;
     }

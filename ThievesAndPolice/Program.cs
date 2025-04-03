@@ -17,13 +17,23 @@ namespace ThievesAndPolice
         {
             Prison prison = new Prison();
 
+            List<string> inventory = new List<string>();
+            inventory.Add("Väska");
+            inventory.Add("Plånbok");
+            inventory.Add("Pengar");
+            inventory.Add("Klocka");
+
             List<Person> persons = new List<Person>();
-            persons.Add(new Citizen("Christofer", 33, "Male", "Plånbok", false, false, array()));    // DENNA FÅR SAMMA POSSITION SOM PERSON 2
+            persons.Add(new Citizen("Christofer", 33, "Male", inventory, false, false, array()));    // DENNA FÅR SAMMA POSSITION SOM PERSON 2
+            persons.Add(new Citizen("Koffe", 3, "Male", inventory, false, false, array()));           // DENNA FÅR SAMMA POSSITION SOM PERSON 1
+            persons.Add(new Citizen("Koffe", 3, "Male", inventory, false, false, array()));           // DENNA FÅR SAMMA POSSITION SOM PERSON 1
+            persons.Add(new Thieve("Koffe", 3, "Male", inventory, false, array()));           // DENNA FÅR SAMMA POSSITION SOM PERSON 1
+            persons.Add(new Police("Koffe", 3, "Male", inventory, false,  array()));           // DENNA FÅR SAMMA POSSITION SOM PERSON 1
             persons.Add(new Citizen("Koffe", 3, "Male", "Väska", false, false, array()));           // DENNA FÅR SAMMA POSSITION SOM PERSON 1
-            
-            
-            
-            
+
+
+
+
             while (true)
             {
                 Console.Clear();

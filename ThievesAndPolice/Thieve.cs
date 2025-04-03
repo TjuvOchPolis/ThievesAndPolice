@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ThievesAndPolice;
 internal class Thieve : Person
 {
-    public Thieve(string name, int age, Queue<Inventory> inventory, string gender, string itemName, bool arrested, int[,] possition) : base(name, age, gender, itemName, possition)
+    public Thieve(string name, int age, string gender, List<Inventory> inventory, bool arrested, int[,] possition) : base(name, age, gender, inventory, possition)
     {
         Arrested = arrested;
     }
