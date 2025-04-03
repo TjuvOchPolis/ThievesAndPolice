@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ThievesAndPolice;
-internal class Person : Inventory
+internal class Person
 {
-    public Person(string name, int age, string gender, List<Inventory> inventory, int[,] possition, string item) : base(item)
+    public Person(string name, int age, string gender, List<Inventory> inventory, int[,] possition)
     {
         Name = name;
         Age = age;

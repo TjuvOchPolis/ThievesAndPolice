@@ -63,6 +63,7 @@ namespace ThievesAndPolice
 
         static public void MovePatter()
         {
+            Console.CursorVisible = false;
             Random rnd = new Random();
 
             int moveX = rnd.Next(-1, 2);
@@ -157,9 +158,9 @@ namespace ThievesAndPolice
                         Console.Write("#");
                     else
                     {
+                            bool check = false;
                         foreach (Person person in persons)
                         {
-                            bool check = false;
 
                             if (i == person.Possition[0, 0] && person is Person)
                             {
@@ -208,13 +209,12 @@ namespace ThievesAndPolice
                                 }
                             }
 
+                        }
+
                         if (check == false)
                             Console.Write(" ");
 
                         check = false;
-                        }
-
-
                     }
                 }
             }
