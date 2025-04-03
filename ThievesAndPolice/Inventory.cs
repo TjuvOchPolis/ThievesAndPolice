@@ -8,9 +8,5 @@ namespace ThievesAndPolice;
 internal class Inventory
 {
     public string ItemName { get; set; }
-
-    public Inventory(string itemName)
-    {
-        ItemName = itemName;
-    }
+    
 }

@@ -159,8 +159,8 @@ namespace ThievesAndPolice
                     {
                         foreach (Person person in persons)
                         {
-
                             bool check = false;
+
                             if (i == person.Possition[0, 0] && person is Person)
                             {
                                 if (j == person.Possition[0, 1])
@@ -207,12 +207,13 @@ namespace ThievesAndPolice
                                     check = true;
                                 }
                             }
-                        }
 
                         if (check == false)
                             Console.Write(" ");
 
                         check = false;
+                        }
+
 
                     }
                 }

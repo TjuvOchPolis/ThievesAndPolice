@@ -18,7 +18,7 @@ internal class Person : Inventory
 
     public string Name { get; set; }
     public int Age { get; set; }
-    public List<string> Inventory { get; set; }
+    public List<Inventory> Inventory { get; set; }
     public string Gender { get; set; }
     public int[,] Possition { get; set; }
 
