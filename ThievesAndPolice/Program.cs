@@ -43,6 +43,10 @@ namespace ThievesAndPolice
             persons.Add(new Citizen("Koffe", 3, "Male", inventory, false, false, array()));
             persons.Add(new Citizen("Lisa", 58, "Female", inventory, false, false, array()));
             persons.Add(new Thieve("Svensson", 16, "Female", inventory, false, array()));
+            persons.Add(new Thieve("Svensson", 16, "Female", inventory, false, array()));
+            persons.Add(new Thieve("Svensson", 16, "Female", inventory, false, array()));
+            persons.Add(new Thieve("Svensson", 16, "Female", inventory, false, array()));
+            persons.Add(new Thieve("Svensson", 16, "Female", inventory, false, array()));
             persons.Add(new Police("Johansson", 22, "Female", inventory, false, array()));
             //persons.Add(new Citizen("Albin", 11, "Male", inventory, false, false, array()));
 
@@ -146,11 +150,8 @@ namespace ThievesAndPolice
 
                         foreach (Person person in persons)
                         {
-
                             foreach (Person person2 in persons)
                             {
-                                //if (person2 == person ||)
-
                                 if (i == person.Possition[0, 0] && person is Citizen)
                                 {
                                     if (j == person.Possition[0, 1] && number1 < 1)
@@ -165,9 +166,9 @@ namespace ThievesAndPolice
 
                                 if (i == person.Possition[0, 0] && person is Thieve)
                                 {
-                                    if (i == person.Possition[0, 0] && i == person2.Possition[0, 0])
+                                    if (i == person.Possition[0, 0] && i == person2.Possition[0, 0] && j == person.Possition[0, 1] && j == person2.Possition[0, 1] && person2 is Citizen)
                                     {
-
+                                        Console.WriteLine("TJUV SNOR");
                                     }
                                     else if (i == person.Possition[0, 0] && j == person.Possition[0, 1] && i == person2.Possition[0, 0] && j == person2.Possition[0, 1])
                                     {
