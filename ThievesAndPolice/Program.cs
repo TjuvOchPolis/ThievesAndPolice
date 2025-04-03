@@ -16,32 +16,6 @@ namespace ThievesAndPolice
         static void Main(string[] args)
         {
             Prison prison = new Prison();
-
-            List<string> inventory = new List<string>();
-            inventory.Add("Väska");
-            inventory.Add("Plånbok");
-            inventory.Add("Pengar");
-            inventory.Add("Klocka");
-
-            List<Person> persons = new List<Person>();
-            persons.Add(new Citizen("Christofer", 33, "Male", inventory, false, false, array()));    // DENNA FÅR SAMMA POSSITION SOM PERSON 2
-            persons.Add(new Citizen("Koffe", 3, "Male", inventory, false, false, array()));           // DENNA FÅR SAMMA POSSITION SOM PERSON 1
-            persons.Add(new Citizen("Koffe", 3, "Male", inventory, false, false, array()));           // DENNA FÅR SAMMA POSSITION SOM PERSON 1
-            persons.Add(new Thieve("Koffe", 3, "Male", inventory, false, array()));           // DENNA FÅR SAMMA POSSITION SOM PERSON 1
-            persons.Add(new Police("Koffe", 3, "Male", inventory, false,  array()));           // DENNA FÅR SAMMA POSSITION SOM PERSON 1
-            persons.Add(new Citizen("Koffe", 3, "Male", "Väska", false, false, array()));           // DENNA FÅR SAMMA POSSITION SOM PERSON 1
-
-
-
-
-            while (true)
-            {
-                Console.Clear();
-                prison.MovePatter();
-                Console.ReadKey();
-            }
-
-
             static int[,] array()
             {
                 return new int[,]
@@ -57,6 +31,32 @@ namespace ThievesAndPolice
                 // Returnerar ett random nummer mellan 0 och 22 för Y-axeln
                 return random.Next(0, 23);
             }
+
+            List<Inventory> inventory = new List<Inventory>();
+            inventory.Add(new Inventory("Väska"));
+            inventory.Add(new Inventory("Plånbok"));
+            inventory.Add(new Inventory("Pengar"));
+            inventory.Add(new Inventory("Klocka"));
+
+            List<Person> persons = new List<Person>();
+            persons.Add(new Citizen("Christofer", 33, "Male", inventory, false, false, array()));   
+            persons.Add(new Citizen("Koffe", 3, "Male", inventory, false, false, array()));           
+            persons.Add(new Citizen("Lisa", 58, "Female", inventory, false, false, array()));           
+            persons.Add(new Thieve("Svensson", 16, "Female", inventory, false, array()));           
+            persons.Add(new Police("Johansson", 22, "Female", inventory, false,  array()));          
+            persons.Add(new Citizen("Albin", 11, "Male", inventory, false, false, array()));         
+
+
+
+
+            while (true)
+            {
+                Console.Clear();
+                prison.MovePatter();
+                Console.ReadKey();
+            }
+
+
 
 
         }
