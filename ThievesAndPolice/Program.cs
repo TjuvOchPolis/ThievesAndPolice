@@ -93,30 +93,11 @@ namespace ThievesAndPolice
                 }
             }
 
-            //int posX = Possition("X", possitionThiefX); //Tjuv
-            //int posY = Possition("Y", possitionThiefY);
-            //possitionThiefX = posX;
-            //possitionThiefY = posY;
-            //int pX = Possition("X", possitionPoliceX); // Polis
-            //int pY = Possition("Y", possitionPoliceY);
-            //possitionPoliceX = pX;
-            //possitionPoliceY = pY;
-
             foreach (Person person in persons)
             {
-
                 person.Possition[0, 0] = Possition("X", person.Possition[0, 0]);
-                person.Possition[0, 1] = Possition("Y", person.Possition[0, 1]);
-                //possitionX = peopleX;
-                //possitionY = peopleY;
+                person.Possition[0, 1] = Possition("Y", person.Possition[0, 1]);                
             }
-
-
-
-
-            //Console.WriteLine($"Medborgare: X: {possitionX}  Y: {possitionY}");
-            //Console.WriteLine($"TJUV: X: {possitionThiefX}  Y: {possitionThiefY}");
-            //Console.WriteLine($"Polis: X: {pX}  Y:{pY}");
 
 
             for (int i = 0; i < 50; i++)
