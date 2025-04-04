@@ -23,13 +23,13 @@ internal class Citizen : Person
         if (IsRobbed)
         {
             IsRobbed = false;
-            return $"Citizen:   {Name} blev rånad\n";
+            return $"Citizen:           {Name} blev rånad\n";
         }
 
         else if(MeetPolice)
         {
             MeetPolice = false;
-            return ($"Citizen:   {Name} hälsar tillbaka till polisen\n");
+            return ($"Citizen:           {Name} hälsar tillbaka till polisen\n");
         }
 
         else

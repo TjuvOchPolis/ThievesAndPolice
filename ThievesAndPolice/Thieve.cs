@@ -18,6 +18,6 @@ internal class Thieve : Person
     public override string Activity()
     {
         IsArrested = true;
-        return $"{Name} has been arrested!";
+        return $"Thief:             {Name} has been arrested!\n";
     }
 }

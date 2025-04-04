@@ -86,6 +86,12 @@ namespace ThievesAndPolice
                                     {
                                         messages.Add(policeMessage);
                                     }
+
+                                    string thiefMessage = thief.Activity();
+                                    if (!string.IsNullOrEmpty(thiefMessage))
+                                    {
+                                        messages.Add(thiefMessage);
+                                    }
                                     thief.Activity();
 
                                 }

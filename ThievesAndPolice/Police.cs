@@ -17,7 +17,6 @@ namespace ThievesAndPolice
         public bool IsArresting { get; set; }
         public bool MeetCitizen { get; set; }
 
-        string wordPolice = "Police: ";
         public override string Activity()
         {
             if (IsArresting)
@@ -25,12 +24,12 @@ namespace ThievesAndPolice
                 IsArresting = false;
 
 
-                return $"{wordPolice}   {Name} arrested thief.\n";
+                return $"Police:            {Name} arrested thief.";
             }
             else if (MeetCitizen)
             {
                 MeetCitizen = false;
-                return $"Police:    {Name} hälsar på citizen!";
+                return $"Police:            {Name} hälsar på citizen!";
             }
             else
             {
