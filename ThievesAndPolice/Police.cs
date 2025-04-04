@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ThievesAndPolice;
 internal class Police : Person
 {
-    public Police(string name, int age, List<Inventory> inventory, string gender, bool arrest) :base(name, age, inventory, gender)
+    public Police(string name, int age, string gender, bool arrest) : base(name, age, gender)
     {
         IsArresting = arrest;
     }
@@ -22,10 +22,11 @@ internal class Police : Person
             MeetCitizen = false;
             return $"{Name} hälsar på citizen. ";
         }
-        else
+        else if (IsArresting)
         {
-            return null;
+            return $"{Name} arresterar :";
         }
-    }
 
+        return "Error när Police möter någon.";
+    }
 }

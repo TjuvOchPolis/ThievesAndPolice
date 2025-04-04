@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ThievesAndPolice;
-internal class Inventory
+internal class Item
 {
-	public string Item {  get; set; }
+	public string Type {  get; set; }
 
-    public Inventory(string item)
+    public Item(string type)
     {
-        Item = item;
+        Type = type;
     }
 }

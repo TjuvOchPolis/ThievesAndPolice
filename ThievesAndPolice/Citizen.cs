@@ -9,7 +9,7 @@ using System.Xml.Linq;
 namespace ThievesAndPolice;
 internal class Citizen : Person
 {
-    public Citizen(string name, int age, List<Inventory> inventory, string gender, bool isRobbed, bool meetPolice) : base(name, age, inventory, gender)
+    public Citizen(string name, int age, string gender, bool isRobbed, bool meetPolice) : base(name, age, gender)
     {
         IsRobbed = isRobbed;
         MeetPolice = meetPolice;
@@ -22,21 +22,18 @@ internal class Citizen : Person
     {
         if (IsRobbed)
         {
-            IsRobbed = false;   
-            return "Rånad";
+            IsRobbed = false;
+            Items.RemoveAt(0);
+            return $"{Name} blev rånad";
         }
 
-        if(MeetPolice)
+        if (MeetPolice)
         {
             MeetPolice = false;
             return ($"{Name} hälsar tillbaka");
         }
 
-        else
-        {
-            return null;
-        }
- 
+        return "Error när Citizen möter någon.";
     }
 
 }
