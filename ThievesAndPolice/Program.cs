@@ -13,6 +13,7 @@ namespace ThievesAndPolice
         static public bool kont = false;
         static string NAMES = "";
         static int längd = 0;
+        static int längd2 = 0;
 
         static void Main(string[] args)
         {
@@ -32,23 +33,38 @@ namespace ThievesAndPolice
                 // Returnerar ett random nummer mellan 0 och 22 för Y-axeln
                 return random.Next(0, 23);
             }
+            List<Inventory> inventoryT = new List<Inventory>();
+            List<Inventory> inventoryP = new List<Inventory>();
 
-            List<Inventory> inventory = new List<Inventory>();
-            inventory.Add(new Inventory("Väska"));
-            inventory.Add(new Inventory("Plånbok"));
-            inventory.Add(new Inventory("Pengar"));
-            inventory.Add(new Inventory("Klocka"));
+            List<Inventory> inventoryC = new List<Inventory>();
+            inventoryC.Add(new Inventory("Väska"));
+            inventoryC.Add(new Inventory("Plånbok"));
+            inventoryC.Add(new Inventory("Pengar"));
+            inventoryC.Add(new Inventory("Klocka"));
 
-            persons.Add(new Citizen("Christofer", 33, "Male", inventory, false, false, array()));
-            persons.Add(new Citizen("Koffe", 3, "Male", inventory, false, false, array()));
-            persons.Add(new Citizen("Lisa", 58, "Female", inventory, false, false, array()));
-            persons.Add(new Thieve("Svensson", 16, "Female", inventory, false, array()));
-            persons.Add(new Thieve("Svensson", 16, "Female", inventory, false, array()));
-            persons.Add(new Thieve("Svensson", 16, "Female", inventory, false, array()));
-            persons.Add(new Thieve("Svensson", 16, "Female", inventory, false, array()));
-            persons.Add(new Thieve("Svensson", 16, "Female", inventory, false, array()));
-            persons.Add(new Police("Johansson", 22, "Female", inventory, false, array()));
-            //persons.Add(new Citizen("Albin", 11, "Male", inventory, false, false, array()));
+            persons.Add(new Citizen("Christofer", 33, "Male", inventoryC, false, false, array()));
+            //persons.Add(new Citizen("Koffe", 3, "Male", inventoryC, false, false, array()));
+            //persons.Add(new Citizen("Lisa", 58, "Female", inventoryC, false, false, array()));
+            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
+            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
+            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
+            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
+            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array())); persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
+            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
+            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
+            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
+            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array())); persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
+            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
+            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
+            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
+            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
+            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
+            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
+            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
+            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
+            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
+            //persons.Add(new Police("Johansson", 22, "Female", inventoryP, false, array()));
+            //persons.Add(new Citizen("Albin", 11, "Male", inventoryC, false, false, array()));
 
 
 
@@ -62,7 +78,8 @@ namespace ThievesAndPolice
                     Console.WriteLine("ITEM SNODD");
                     kont = false;
                     Console.WriteLine(NAMES);
-                    Console.WriteLine($"SAKER KVAR: {längd}");
+                    Console.WriteLine($"SAKERSNODDA: {längd}");
+                    Console.WriteLine($"SAKER KVAR: {längd2}");
                     Console.ReadKey();
                 }
             }
@@ -177,42 +194,32 @@ namespace ThievesAndPolice
                                     if (i == person.Possition[0, 0] && i == person2.Possition[0, 0] && j == person.Possition[0, 1] && j == person2.Possition[0, 1] && person2 is Citizen)
                                     {
                                         //Logik om Medborgare och Tjuv hamnar på samma kordinater, så snor tjuven om det finns saker att sno
-                                        if (person2.Inventory != null)
+                                        if (person2.Inventory.Count > 0)
                                         {
-                                            number2++;
-                                            int numb = 0;
-                                            foreach (var item in person2.Inventory.ToList())
-                                            {
-                                                if (numb == 0)
-                                                {
-                                                   
-                                                    person.Inventory.Add(new Inventory(item.Item));
-                                                    person2.Inventory.RemoveAt(0);
+                                            var stolenItem = person2.Inventory[0];
 
-                                                }
-                                                numb++;
-                                            }
-                                            
-                                            längd = person2.Inventory.Count;
+                                            person.Inventory.Add(new Inventory(stolenItem.Item));
+                                            person2.Inventory.RemoveAt(0);
+
+                                            längd2 = person2.Inventory.Count;
+                                            längd = person.Inventory.Count;
                                             kont = true;
                                             check = true;
                                             NAMES = $"Namn: {person.Name} - {person2.Name}, Kordinat: X:{person.Possition[0, 0]} Y:{person.Possition[0, 1]} - X:{person2.Possition[0, 0]} Y:{person2.Possition[0, 1]}";
                                         }
-
                                     }
                                     else if (i == person.Possition[0, 0] && i == person2.Possition[0, 0] && j == person.Possition[0, 1] && j == person2.Possition[0, 1] && person2 is Police)
                                     {
-                                        number2++;
                                         check = true;
                                     }
-                                    else if (j == person.Possition[0, 1] && number2 < 1 && j != person2.Possition[0, 1] && person2 is not Citizen)
+                                    else if (j == person.Possition[0, 1] && number2 < 1 && j != person2.Possition[0, 1] && person is not Citizen)
                                     {
-                                        number2++;
                                         Console.ForegroundColor = ConsoleColor.Red;
                                         Console.Write("T");
                                         Console.ResetColor();
                                         check = true;
                                     }
+                                    number2++;
                                 }
 
                                 if (i == person.Possition[0, 0] && person is Police)
@@ -220,26 +227,26 @@ namespace ThievesAndPolice
                                     if (i == person.Possition[0, 0] && i == person2.Possition[0, 0] && j == person.Possition[0, 1] && j == person2.Possition[0, 1] && person2 is Citizen)
                                     {
                                         check = true;
-                                        number3++;
+
                                     }
                                     else if (i == person.Possition[0, 0] && i == person2.Possition[0, 0] && j == person.Possition[0, 1] && j == person2.Possition[0, 1] && person2 is Thieve)
                                     {
                                         check = true;
-                                        number3++;
                                         Console.WriteLine("TJUV TILL FÄNGELSE"); // här kommer logit för när en tjuv blir tagen
                                     }
                                     else if (j == person.Possition[0, 1] && number3 < 1 && j != person2.Possition[0, 1])
                                     {
-                                        number3++;
                                         Console.ForegroundColor = ConsoleColor.Blue;
                                         Console.Write("P");
                                         Console.ResetColor();
                                         check = true;
                                     }
+                                    number3++;
                                 }
                             }
-
                         }
+
+
 
                         if (check == false)
                             Console.Write(" ");
@@ -247,6 +254,7 @@ namespace ThievesAndPolice
                         check = false;
                     }
                 }
+
             }
 
             Console.WriteLine();
@@ -282,6 +290,7 @@ namespace ThievesAndPolice
                     Console.Write("#");
             }
 
+
             // PRISON
             for (int j = 0; j < 8; j++)
             {
@@ -303,7 +312,7 @@ namespace ThievesAndPolice
             }
             Console.WriteLine();
             for (int i = 0; i < 10; i++)
-                Console.Write("#");
+            { Console.Write("#"); }
 
         }
 
