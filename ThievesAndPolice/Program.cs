@@ -42,29 +42,50 @@ namespace ThievesAndPolice
             inventoryC.Add(new Inventory("Pengar"));
             inventoryC.Add(new Inventory("Klocka"));
 
+            // Medborgare
             persons.Add(new Citizen("Christofer", 33, "Male", inventoryC, false, false, array()));
-            //persons.Add(new Citizen("Koffe", 3, "Male", inventoryC, false, false, array()));
-            //persons.Add(new Citizen("Lisa", 58, "Female", inventoryC, false, false, array()));
+            persons.Add(new Citizen("Koffe", 3, "Male", inventoryC, false, false, array()));
+            persons.Add(new Citizen("Lisa", 58, "Female", inventoryC, false, false, array()));
+            persons.Add(new Citizen("Vitkor", 33, "Male", inventoryC, false, false, array()));
+            persons.Add(new Citizen("Johannes", 3, "Male", inventoryC, false, false, array()));
+            persons.Add(new Citizen("Philip", 58, "Female", inventoryC, false, false, array()));
+            persons.Add(new Citizen("Dominik", 33, "Male", inventoryC, false, false, array()));
+            persons.Add(new Citizen("Mackan", 3, "Male", inventoryC, false, false, array()));
+            persons.Add(new Citizen("Jennifer", 58, "Female", inventoryC, false, false, array()));
+            persons.Add(new Citizen("Eve", 33, "Male", inventoryC, false, false, array()));
+            persons.Add(new Citizen("Crack-1", 3, "Male", inventoryC, false, false, array()));
+            persons.Add(new Citizen("Crack-23", 58, "Female", inventoryC, false, false, array()));
+            persons.Add(new Citizen("Namn", 33, "Male", inventoryC, false, false, array()));
+            persons.Add(new Citizen("Name31", 3, "Male", inventoryC, false, false, array()));
+            persons.Add(new Citizen("Slut-På-Namn", 58, "Female", inventoryC, false, false, array()));
+            persons.Add(new Citizen("EN-TILL", 33, "Male", inventoryC, false, false, array()));
+            persons.Add(new Citizen("ALDRIG-SLUT?", 3, "Male", inventoryC, false, false, array()));
+            persons.Add(new Citizen("Snart", 58, "Female", inventoryC, false, false, array()));
+            persons.Add(new Citizen("Så", 33, "Male", inventoryC, false, false, array()));
+            persons.Add(new Citizen("Äntligen", 3, "Male", inventoryC, false, false, array()));
+
+            // Tjuvar
             persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
             persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
             persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
             persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
-            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array())); persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
-            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
-            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
-            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
-            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array())); persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
             persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
             persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
             persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
             persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
+            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array())); 
             persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
             persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
-            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
-            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
-            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
-            //persons.Add(new Police("Johansson", 22, "Female", inventoryP, false, array()));
-            //persons.Add(new Citizen("Albin", 11, "Male", inventoryC, false, false, array()));
+            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));            
+
+            //Poliser
+            persons.Add(new Police("Johansson", 22, "Female", inventoryP, false, array()));
+            persons.Add(new Police("Johansson", 22, "Female", inventoryP, false, array()));
+            persons.Add(new Police("Johansson", 22, "Female", inventoryP, false, array()));
+            persons.Add(new Police("Johansson", 22, "Female", inventoryP, false, array()));
+            persons.Add(new Police("Johansson", 22, "Female", inventoryP, false, array()));
+            persons.Add(new Police("Johansson", 22, "Female", inventoryP, false, array()));
+            
 
 
 
