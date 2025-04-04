@@ -22,14 +22,14 @@ internal class Citizen : Person
     {
         if (IsRobbed)
         {
-            IsRobbed = false;   
-            return "Rånad";
+            IsRobbed = false;
+            return $"Citizen:   {Name} blev rånad\n";
         }
 
-        if(MeetPolice)
+        else if(MeetPolice)
         {
             MeetPolice = false;
-            return ($"{Name} hälsar tillbaka");
+            return ($"Citizen:   {Name} hälsar tillbaka till polisen\n");
         }
 
         else

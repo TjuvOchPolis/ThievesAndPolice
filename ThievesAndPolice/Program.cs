@@ -26,25 +26,26 @@ namespace ThievesAndPolice
 
             List<Person> people = new List<Person>()
             {
-                new Citizen("Hej", 24, items, "male", false, false),
-                new Police("ADA", 48, items, "male", false),
+                new Citizen("Johannes", 24, items, "male", false, false),
+                new Police("Markus", 48, items, "male", false),
                 new Thieve("Kristoffer", 32, items, "male", false),
-                new Citizen("KDA", 12, items, "male", false, false),
-                new Police("Poaes", 49, items, "male", false),
-                new Thieve ("Kristoffer", 56, items, "male", false),
-                new Citizen("Hej", 24, items, "male", false, false),
-                new Police("ADA", 48, items, "male", false),
+                new Citizen("Thomas", 12, items, "male", false, false),
+                new Police("Linda", 49, items, "male", false),
+                new Thieve ("Oskar", 56, items, "male", false),
+                new Citizen("Magnus", 24, items, "male", false, false),
+                new Police("Wilma", 48, items, "male", false),
                 new Thieve("Christoffer", 32, items, "male", false),
-                new Citizen("KDA", 12, items, "male", false, false),
-                new Police("Poaes", 49, items, "male", false),
-                new Thieve ("Christoffer", 56, items, "male", false),
-                new Citizen("Hej", 24, items, "male", false, false),
-                new Police("ADA", 48, items, "male", false),
-                new Thieve("Christoffer", 32, items, "male", false),
-                new Citizen("KDA", 12, items, "male", false, false),
-                new Police("Poaes", 49, items, "male", false),
-                new Thieve ("Christoffer", 56, items, "male", false),
+                new Citizen("Annie", 12, items, "male", false, false),
+                new Police("Torbjörn", 49, items, "male", false),
+                new Thieve ("Elin", 56, items, "male", false),
+                new Citizen("Ragnar", 24, items, "male", false, false),
+                new Police("Bertil", 48, items, "male", false),
+                new Thieve("Chris", 32, items, "male", false),
+                new Citizen("Seth", 12, items, "male", false, false),
+                new Police("Tim", 49, items, "male", false),
+                new Thieve ("Måns", 56, items, "male", false),
             };
+
 
             //Sätter en startposition för samtliga i people-listan
             foreach (Person person in people)
@@ -53,6 +54,8 @@ namespace ThievesAndPolice
             while (true)
             {
                 Console.Clear();
+
+                List<string> messages = new List<string>();
 
                 for (int i = 0; i < people.Count; i++)
                 {
@@ -70,8 +73,20 @@ namespace ThievesAndPolice
                                     police.PositionY == thief.PositionY)
                                 {
                                     //Thief blir arrested.
-                                    SetCursor(police.Activity());
-                                    SetCursor(thief.Activity());
+
+
+                                    police.IsArresting = true;
+                                    thief.IsArrested = true;
+
+                                    thief.PositionX = rnd.Next(1, 9); // Prison är 10 x 10
+                                    thief.PositionY = rnd.Next(1, 9);
+
+                                    string policeMessage = police.Activity();
+                                    if (!string.IsNullOrEmpty(policeMessage))
+                                    {
+                                        messages.Add(policeMessage);
+                                    }
+                                    thief.Activity();
 
                                 }
                             }
@@ -80,11 +95,20 @@ namespace ThievesAndPolice
                                 if(citizen.PositionX == police.PositionX &&
                                    citizen.PositionY == police.PositionY)
                                 {
+                                    police.MeetCitizen = true;
+                                    string policeMessage = police.Activity();
+                                    if (!string.IsNullOrEmpty(policeMessage))
+                                    {
+                                        messages.Add(policeMessage);
+                                    }
 
                                     citizen.MeetPolice = true;
-                                    police.MeetCitizen = true;
-                                    SetCursor(police.Activity());
-                                    SetCursor(citizen.Activity());
+                                    string citizenMessage = citizen.Activity();
+                                    if (!string.IsNullOrEmpty(citizenMessage))
+                                    {
+                                        messages.Add(citizenMessage);
+                                    }
+                                    police.Activity();
                                 }
                             }
                         }
@@ -99,15 +123,17 @@ namespace ThievesAndPolice
 
                         foreach (Person person in people)
                         {
+                            if (person is Thieve thief && thief.IsArrested)
+                                continue; // Om person i listan people är en thief så skippar den kod för denna personen och hoppar till nästa
+                                
+
                             if (person.PositionX == i && person.PositionY == j && person is Citizen)
                                 symbol = 'C';
                             else if (person.PositionX == i && person.PositionY == j && person is Police)
                                 symbol = 'P';
                             else if (person.PositionX == i && person.PositionY == j && person is Thieve)
                                 symbol = 'T';
-
                         }
-
 
                         //Ändrar färg på symbolen för invånare
                         if (symbol == 'C')
@@ -121,20 +147,42 @@ namespace ThievesAndPolice
 
                         Console.ResetColor();
                     }
+
+                    if (i < messages.Count)
+                    {
+                        Console.Write("     " + messages[i]);
+                    }
                     Console.WriteLine();
+
                 }
 
-
+                Console.ForegroundColor= ConsoleColor.DarkRed;
+                Console.WriteLine("==========");
+                Console.WriteLine("==Prison==");
+                Console.WriteLine("==========");
+                Console.ForegroundColor = ConsoleColor.White;
 
                 //Fängelse målas
-                /*for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 10; i++)
                 {
                     for (int j = 0; j < 10; j++)
                     {
-                        Console.Write(prison1[i, j]);
+                        char symbol = prison1[i, j];
+
+                        foreach (Person person in people)
+                        {
+                            if (person is Thieve thief && thief.IsArrested &&
+                                thief.PositionX == i && thief.PositionY == j)
+                            {
+                                symbol = 'T';
+                                Console.ForegroundColor = ConsoleColor.Red;
+                            }
+                        }
+                        Console.Write(symbol);
+                        Console.ResetColor();
                     }
                     Console.WriteLine();
-                }*/
+                }
 
                 foreach (var person in people)
                 {
@@ -159,14 +207,7 @@ namespace ThievesAndPolice
                 }
 
                 Console.ReadKey();
-
             }
-        }
-
-        static void SetCursor(string cursor)
-        {
-            Console.SetCursorPosition(65, Console.CursorLeft);
-            Console.WriteLine(cursor);
         }
     }
 }
