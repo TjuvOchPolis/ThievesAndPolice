@@ -33,14 +33,6 @@ namespace ThievesAndPolice
                 // Returnerar ett random nummer mellan 0 och 22 för Y-axeln
                 return random.Next(0, 23);
             }
-            List<Inventory> inventoryT = new List<Inventory>();
-            List<Inventory> inventoryP = new List<Inventory>();
-
-            //List<Inventory> inventoryC = new List<Inventory>();
-            //    inventoryC.Add(new Inventory("Väska"));
-            //    inventoryC.Add(new Inventory("Plånbok"));
-            //    inventoryC.Add(new Inventory("Pengar"));
-            //    inventoryC.Add(new Inventory("Klocka"));
 
             // Medborgare
             persons.Add(new Citizen("Christofer", 33, "Male", false, false, array()));
@@ -62,7 +54,7 @@ namespace ThievesAndPolice
             persons.Add(new Citizen("ALDRIG-SLUT?", 3, "Male", false, false, array()));
             persons.Add(new Citizen("Snart", 58, "Female", false, false, array()));
             persons.Add(new Citizen("Så", 33, "Male", false, false, array()));
-            persons.Add(new Citizen("Äntligen", 3, "Male", false, false, array()));
+            persons.Add(new Citizen("Äntligen", 81, "Male", false, false, array()));
 
             // Tjuvar
             persons.Add(new Thieve("Jönsson", 16, "Female", false, array()));
@@ -215,14 +207,14 @@ namespace ThievesAndPolice
                                     if (y == person.Possition[0, 0] && y == person2.Possition[0, 0] && x == person.Possition[0, 1] && x == person2.Possition[0, 1] && person2 is Citizen citizen)
                                     {
                                         //Logik om Medborgare och Tjuv hamnar på samma kordinater, så snor tjuven om det finns saker att sno
-
-                                        thief.Interaction(thief, citizen);
+                                        if (citizen.inventory.Count > 0)
+                                            thief.Interaction(thief, citizen);
 
                                         foreach (var item in thief.inventory)
                                         {
                                             Console.WriteLine(item.Item);
                                         }
-                                       
+
                                         kont = true;
                                         check = true;
                                         NAMES = $"Namn: {person.Name} - {person2.Name}, Kordinat: X:{person.Possition[0, 0]} Y:{person.Possition[0, 1]} - X:{person2.Possition[0, 0]} Y:{person2.Possition[0, 1]}";
