@@ -36,56 +36,56 @@ namespace ThievesAndPolice
             List<Inventory> inventoryT = new List<Inventory>();
             List<Inventory> inventoryP = new List<Inventory>();
 
-            List<Inventory> inventoryC = new List<Inventory>();
-            inventoryC.Add(new Inventory("Väska"));
-            inventoryC.Add(new Inventory("Plånbok"));
-            inventoryC.Add(new Inventory("Pengar"));
-            inventoryC.Add(new Inventory("Klocka"));
+            //List<Inventory> inventoryC = new List<Inventory>();
+            //    inventoryC.Add(new Inventory("Väska"));
+            //    inventoryC.Add(new Inventory("Plånbok"));
+            //    inventoryC.Add(new Inventory("Pengar"));
+            //    inventoryC.Add(new Inventory("Klocka"));
 
             // Medborgare
-            persons.Add(new Citizen("Christofer", 33, "Male", inventoryC, false, false, array()));
-            persons.Add(new Citizen("Koffe", 3, "Male", inventoryC, false, false, array()));
-            persons.Add(new Citizen("Lisa", 58, "Female", inventoryC, false, false, array()));
-            persons.Add(new Citizen("Vitkor", 33, "Male", inventoryC, false, false, array()));
-            persons.Add(new Citizen("Johannes", 3, "Male", inventoryC, false, false, array()));
-            persons.Add(new Citizen("Philip", 58, "Female", inventoryC, false, false, array()));
-            persons.Add(new Citizen("Dominik", 33, "Male", inventoryC, false, false, array()));
-            persons.Add(new Citizen("Mackan", 3, "Male", inventoryC, false, false, array()));
-            persons.Add(new Citizen("Jennifer", 58, "Female", inventoryC, false, false, array()));
-            persons.Add(new Citizen("Eve", 33, "Male", inventoryC, false, false, array()));
-            persons.Add(new Citizen("Crack-1", 3, "Male", inventoryC, false, false, array()));
-            persons.Add(new Citizen("Crack-23", 58, "Female", inventoryC, false, false, array()));
-            persons.Add(new Citizen("Namn", 33, "Male", inventoryC, false, false, array()));
-            persons.Add(new Citizen("Name31", 3, "Male", inventoryC, false, false, array()));
-            persons.Add(new Citizen("Slut-På-Namn", 58, "Female", inventoryC, false, false, array()));
-            persons.Add(new Citizen("EN-TILL", 33, "Male", inventoryC, false, false, array()));
-            persons.Add(new Citizen("ALDRIG-SLUT?", 3, "Male", inventoryC, false, false, array()));
-            persons.Add(new Citizen("Snart", 58, "Female", inventoryC, false, false, array()));
-            persons.Add(new Citizen("Så", 33, "Male", inventoryC, false, false, array()));
-            persons.Add(new Citizen("Äntligen", 3, "Male", inventoryC, false, false, array()));
+            persons.Add(new Citizen("Christofer", 33, "Male", false, false, array()));
+            persons.Add(new Citizen("Koffe", 3, "Male", false, false, array()));
+            persons.Add(new Citizen("Lisa", 58, "Female", false, false, array()));
+            persons.Add(new Citizen("Viktor", 33, "Male", false, false, array()));
+            persons.Add(new Citizen("Johannes", 3, "Male", false, false, array()));
+            persons.Add(new Citizen("Philip", 58, "Female", false, false, array()));
+            persons.Add(new Citizen("Dominik", 33, "Male", false, false, array()));
+            persons.Add(new Citizen("Mackan", 3, "Male", false, false, array()));
+            persons.Add(new Citizen("Jennifer", 58, "Female", false, false, array()));
+            persons.Add(new Citizen("Eve", 33, "Male", false, false, array()));
+            persons.Add(new Citizen("Crack-1", 3, "Male", false, false, array()));
+            persons.Add(new Citizen("Crack-23", 58, "Female", false, false, array()));
+            persons.Add(new Citizen("Namn", 33, "Male", false, false, array()));
+            persons.Add(new Citizen("Name31", 3, "Male", false, false, array()));
+            persons.Add(new Citizen("Slut-På-Namn", 58, "Female", false, false, array()));
+            persons.Add(new Citizen("EN-TILL", 33, "Male", false, false, array()));
+            persons.Add(new Citizen("ALDRIG-SLUT?", 3, "Male", false, false, array()));
+            persons.Add(new Citizen("Snart", 58, "Female", false, false, array()));
+            persons.Add(new Citizen("Så", 33, "Male", false, false, array()));
+            persons.Add(new Citizen("Äntligen", 3, "Male", false, false, array()));
 
             // Tjuvar
-            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
-            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
-            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
-            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
-            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
-            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
-            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
-            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
-            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array())); 
-            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
-            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));
-            persons.Add(new Thieve("Svensson", 16, "Female", inventoryT, false, array()));            
+            persons.Add(new Thieve("Jönsson", 16, "Female", false, array()));
+            persons.Add(new Thieve("Jönsson", 16, "Female", false, array()));
+            persons.Add(new Thieve("Jönsson", 16, "Female", false, array()));
+            persons.Add(new Thieve("Jönsson", 16, "Female", false, array()));
+            persons.Add(new Thieve("Jönsson", 16, "Female", false, array()));
+            persons.Add(new Thieve("Jönsson", 16, "Female", false, array()));
+            persons.Add(new Thieve("Jönsson", 16, "Female", false, array()));
+            persons.Add(new Thieve("Jönsson", 16, "Female", false, array()));
+            persons.Add(new Thieve("Jönsson", 16, "Female", false, array()));
+            persons.Add(new Thieve("Jönsson", 16, "Female", false, array()));
+            persons.Add(new Thieve("Jönsson", 16, "Female", false, array()));
+            persons.Add(new Thieve("Jönsson", 16, "Female", false, array()));
 
             //Poliser
-            persons.Add(new Police("Johansson", 22, "Female", inventoryP, false, array()));
-            persons.Add(new Police("Johansson", 22, "Female", inventoryP, false, array()));
-            persons.Add(new Police("Johansson", 22, "Female", inventoryP, false, array()));
-            persons.Add(new Police("Johansson", 22, "Female", inventoryP, false, array()));
-            persons.Add(new Police("Johansson", 22, "Female", inventoryP, false, array()));
-            persons.Add(new Police("Johansson", 22, "Female", inventoryP, false, array()));
-            
+            persons.Add(new Police("Johansson", 22, "Female", false, array()));
+            persons.Add(new Police("Johansson", 22, "Female", false, array()));
+            persons.Add(new Police("Johansson", 22, "Female", false, array()));
+            persons.Add(new Police("Johansson", 22, "Female", false, array()));
+            persons.Add(new Police("Johansson", 22, "Female", false, array()));
+            persons.Add(new Police("Johansson", 22, "Female", false, array()));
+
 
 
 
@@ -177,14 +177,14 @@ namespace ThievesAndPolice
 
 
 
-            for (int j = 0; j < 23; j++)
+            for (int x = 0; x < 23; x++)
             {
                 Console.WriteLine();
-                for (int i = 0; i < 50; i++)
+                for (int y = 0; y < 50; y++)
                 {
-                    if (i == 0)
+                    if (y == 0)
                         Console.Write("#");
-                    else if (i == 49)
+                    else if (y == 49)
                         Console.Write("#");
                     else
                     {
@@ -193,47 +193,46 @@ namespace ThievesAndPolice
                         int number3 = 0;
 
                         bool check = false;
-
                         foreach (Person person in persons)
                         {
                             foreach (Person person2 in persons)
                             {
-                                if (i == person.Possition[0, 0] && person is Citizen)
+                                if (y == person.Possition[0, 0] && person is Citizen)
                                 {
-                                    if (j == person.Possition[0, 1] && number1 < 1)
+                                    if (x == person.Possition[0, 1] && number1 < 1)
                                     {
                                         number1++;
                                         Console.ForegroundColor = ConsoleColor.Green;
                                         Console.Write("C"); // Logik för att printa ut Medborgare
                                         Console.ResetColor();
                                         check = true;
+
                                     }
                                 }
 
-                                if (i == person.Possition[0, 0] && person is Thieve)
+                                if (y == person.Possition[0, 0] && person is Thieve thief)
                                 {
-                                    if (i == person.Possition[0, 0] && i == person2.Possition[0, 0] && j == person.Possition[0, 1] && j == person2.Possition[0, 1] && person2 is Citizen)
+                                    if (y == person.Possition[0, 0] && y == person2.Possition[0, 0] && x == person.Possition[0, 1] && x == person2.Possition[0, 1] && person2 is Citizen citizen)
                                     {
                                         //Logik om Medborgare och Tjuv hamnar på samma kordinater, så snor tjuven om det finns saker att sno
-                                        if (person2.Inventory.Count > 0)
+
+                                        thief.Interaction(thief, citizen);
+
+                                        foreach (var item in thief.inventory)
                                         {
-                                            var stolenItem = person2.Inventory[0];
-
-                                            person.Inventory.Add(new Inventory(stolenItem.Item));
-                                            person2.Inventory.RemoveAt(0);
-
-                                            längd2 = person2.Inventory.Count;
-                                            längd = person.Inventory.Count;
-                                            kont = true;
-                                            check = true;
-                                            NAMES = $"Namn: {person.Name} - {person2.Name}, Kordinat: X:{person.Possition[0, 0]} Y:{person.Possition[0, 1]} - X:{person2.Possition[0, 0]} Y:{person2.Possition[0, 1]}";
+                                            Console.WriteLine(item.Item);
                                         }
+                                       
+                                        kont = true;
+                                        check = true;
+                                        NAMES = $"Namn: {person.Name} - {person2.Name}, Kordinat: X:{person.Possition[0, 0]} Y:{person.Possition[0, 1]} - X:{person2.Possition[0, 0]} Y:{person2.Possition[0, 1]}";
                                     }
-                                    else if (i == person.Possition[0, 0] && i == person2.Possition[0, 0] && j == person.Possition[0, 1] && j == person2.Possition[0, 1] && person2 is Police)
+                                    else if (y == person.Possition[0, 0] && y == person2.Possition[0, 0] && x == person.Possition[0, 1] && x == person2.Possition[0, 1] && person2 is Police)
                                     {
+                                        // Behövs verkligen denna if-satsen? Kan ju skriva koden i polisen OM polisen hamnar på en tjuvs kordinater eller att en tjuv hamnar på polisens kordinater
                                         check = true;
                                     }
-                                    else if (j == person.Possition[0, 1] && number2 < 1 && j != person2.Possition[0, 1] && person is not Citizen)
+                                    else if (x == person.Possition[0, 1] && number2 < 1 && x != person2.Possition[0, 1] && person is not Citizen)
                                     {
                                         Console.ForegroundColor = ConsoleColor.Red;
                                         Console.Write("T");
@@ -242,20 +241,19 @@ namespace ThievesAndPolice
                                     }
                                     number2++;
                                 }
-
-                                if (i == person.Possition[0, 0] && person is Police)
+                                if (y == person.Possition[0, 0] && person is Police)
                                 {
-                                    if (i == person.Possition[0, 0] && i == person2.Possition[0, 0] && j == person.Possition[0, 1] && j == person2.Possition[0, 1] && person2 is Citizen)
+                                    if (y == person.Possition[0, 0] && y == person2.Possition[0, 0] && y == person.Possition[0, 1] && y == person2.Possition[0, 1] && person2 is Citizen)
                                     {
                                         check = true;
 
                                     }
-                                    else if (i == person.Possition[0, 0] && i == person2.Possition[0, 0] && j == person.Possition[0, 1] && j == person2.Possition[0, 1] && person2 is Thieve)
+                                    else if (y == person.Possition[0, 0] && y == person2.Possition[0, 0] && x == person.Possition[0, 1] && x == person2.Possition[0, 1] && person2 is Thieve)
                                     {
                                         check = true;
                                         Console.WriteLine("TJUV TILL FÄNGELSE"); // här kommer logit för när en tjuv blir tagen
                                     }
-                                    else if (j == person.Possition[0, 1] && number3 < 1 && j != person2.Possition[0, 1])
+                                    else if (x == person.Possition[0, 1] && number3 < 1 && x != person2.Possition[0, 1] && person2 is not Citizen && person2 is not Thieve)
                                     {
                                         Console.ForegroundColor = ConsoleColor.Blue;
                                         Console.Write("P");
@@ -269,14 +267,16 @@ namespace ThievesAndPolice
 
 
 
+
                         if (check == false)
                             Console.Write(" ");
 
                         check = false;
                     }
                 }
-
             }
+
+
 
             Console.WriteLine();
             for (int i = 0; i < 50; i++)

@@ -7,20 +7,25 @@ using System.Threading.Tasks;
 namespace ThievesAndPolice;
 internal class Person
 {
-    public Person(string name, int age, string gender, List<Inventory> inventory, int[,] possition)
+    public Person(string name, int age, string gender, int[,] possition)
     {
         Name = name;
-        Age = age;
-        Inventory = inventory;
+        Age = age;        
         Gender = gender;
         Possition = possition;
     }
 
     public string Name { get; set; }
     public int Age { get; set; }
-    public List<Inventory> Inventory { get; set; }
+   
     public string Gender { get; set; }
     public int[,] Possition { get; set; }
 
-   
+    public virtual void Interaction()
+    {
+
+    }
+    public virtual void Interaction(Thieve thief, Citizen citizen)
+    {
+    }
 }
