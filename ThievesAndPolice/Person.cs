@@ -23,9 +23,12 @@ internal class Person
 
     public virtual void Interaction()
     {
-
     }
     public virtual void Interaction(Thieve thief, Citizen citizen)
+    {
+    }
+
+    public virtual void Interaction(Police police, Thieve thief)
     {
     }
 }

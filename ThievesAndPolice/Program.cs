@@ -210,10 +210,11 @@ namespace ThievesAndPolice
                                         if (citizen.inventory.Count > 0)
                                             thief.Interaction(thief, citizen);
 
-                                        foreach (var item in thief.inventory)
-                                        {
-                                            Console.WriteLine(item.Item);
-                                        }
+                                        //Printar ut item som finns i tjuv
+                                        //foreach (var item in thief.inventory)
+                                        //{
+                                        //    Console.WriteLine(item.Item);
+                                        //}
 
                                         kont = true;
                                         check = true;
@@ -233,17 +234,20 @@ namespace ThievesAndPolice
                                     }
                                     number2++;
                                 }
-                                if (y == person.Possition[0, 0] && person is Police)
+                                if (y == person.Possition[0, 0] && person is Police police)
                                 {
                                     if (y == person.Possition[0, 0] && y == person2.Possition[0, 0] && y == person.Possition[0, 1] && y == person2.Possition[0, 1] && person2 is Citizen)
                                     {
                                         check = true;
 
                                     }
-                                    else if (y == person.Possition[0, 0] && y == person2.Possition[0, 0] && x == person.Possition[0, 1] && x == person2.Possition[0, 1] && person2 is Thieve)
+                                    else if (y == person.Possition[0, 0] && y == person2.Possition[0, 0] && x == person.Possition[0, 1] && x == person2.Possition[0, 1] && person2 is Thieve thief2)
                                     {
                                         check = true;
-                                        Console.WriteLine("TJUV TILL FÄNGELSE"); // här kommer logit för när en tjuv blir tagen
+                                        if(thief2.inventory != null)
+                                        {
+                                            police.Interaction(police, thief2);
+                                        }
                                     }
                                     else if (x == person.Possition[0, 1] && number3 < 1 && x != person2.Possition[0, 1] && person2 is not Citizen && person2 is not Thieve)
                                     {
