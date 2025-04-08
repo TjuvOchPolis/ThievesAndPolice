@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 namespace ThievesAndPolice;
 internal class Police : Person
 {
-    public Police(string name, int age, Queue<Inventory> inventory, string gender, string itemName, bool arrest, int[,] possition) : base(name, age, gender, itemName, possition)
+    public Police(string name, int[,] pos) : base(name, pos)
     {
-        Arrest = arrest;
+        Name = name;
     }
+
+    public List<Item> PoliceInventory = new List<Item>();
 
     public bool Arrest { get; set; }
 

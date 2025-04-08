@@ -1,44 +1,84 @@
-﻿namespace ThievesAndPolice
+﻿using System;
+
+namespace ThievesAndPolice
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Prison prison = new Prison();
-
-            while (true)
+            List<Person> people = new List<Person>()
             {
-                Console.Clear();
-                prison.MovePatter();
-                Console.ReadKey();
+                new Thief("Lars", array()),
+                new Citizen("Anders", array()),
+                new Police("Gunnar", array()),
+            };
+            int maxHeight = 25;
+            int maxWidth = 50;
+
+            char[,] city = new char[maxHeight, maxWidth];
+
+            for (int x = 0; x < city.GetLength(0); x++)
+            {
+                for (int y = 0; y < city.GetLength(1); y++)
+                {
+                    char symbol = city[x, y];
+                    if (x == 0 || x == maxHeight - 1 || y == 0 || y == maxWidth - 1)
+                        symbol = '*';
+                    else
+                        symbol = ' ';
+
+                    foreach (Person person in people)
+                    {
+                        if (symbol == ' ')
+                        {
+                            if (city[x,y] == person.Position[x, y] && person is Police)
+                                symbol = 'P';
+                            else if (city[x, y] == person.Position[x, y] && person is Thief)
+                                symbol = 'T';
+                            else if (city[x, y] == person.Position[x, y] && person is Citizen)
+                                symbol = 'C';
+                        }
+                    }
+
+                    Console.Write(city[x, y]);
+                }
+                Console.WriteLine();
             }
 
-        //    int possitionX = 10;
-        //    int possitionY = 20;
+            int maxHeightPrison = 10;
+            int maxWidthPrison = 10;
+
+            char[,] prison = new char[maxHeightPrison, maxWidthPrison];
+
+            for (int x = 0; x < prison.GetLength(0); x++)
+            {
+                for (int y = 0; y < prison.GetLength(1); y++)
+                {
+                    if (x == 0 || x == maxHeightPrison - 1 || y == 0 || y == maxWidthPrison - 1)
+                        prison[x, y] = '*';
+                    else
+                        prison[x, y] = ' ';
 
 
-        //    int[,] array =
-        //    {
-        //        {possitionX, possitionY}
-        //    };
-        //    List<string> list = new List<string>();
-        //    list.Add("Plånbok");
-        //    list.Add("Väska");
-        //    list.Add("Pengar");
-        //    list.Add("Tampong");
-
-
-        //    Citizen person = new Citizen("Christofer", 33, "Male", "Plånbok", false, false, array);
-
-
-        //    Console.WriteLine($"\nName: {person.Name}");
-        //    Console.WriteLine($"Age: {person.Age}");
-        //    Console.WriteLine($"Gender: {person.Gender}");
-        //    Console.WriteLine($"Items: {person.ItemName}");
-        //    Console.WriteLine($"Is robbed: {person.IsRobbed}");
-        //    Console.WriteLine($"Meets Police: {person.MeetPolice}");
-        //    Console.WriteLine($"Possition X: {person.Possition[0, 0]}");
-        //    Console.WriteLine($"Possition Y: {person.Possition[0, 1]}");
+                    Console.Write(prison[x, y]);
+                }
+                Console.WriteLine();
+            }
+        }
+        static int[,] array()
+        {
+            return new int[,]
+            { { RandomX(), RandomY() } };
+        }
+        static int RandomX()
+        {
+            // Returnerar ett random nummer mellan 1 och 48 för X-axeln
+            return Random.Shared.Next(1, 49);
+        }
+        static int RandomY()
+        {
+            // Returnerar ett random nummer mellan 0 och 22 för Y-axeln
+            return Random.Shared.Next(0, 23);
         }
     }
 }

@@ -5,22 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ThievesAndPolice;
-internal class Person : Inventory
+internal class Person : IPerson
 {
-    public Person(string name, int age, string gender, string itemName, int[,] possition) : base(itemName)
+    public Person(string name, int[,] position)
     {
         Name = name;
-        Age = age;
-        //Inventory = inventory;
-        Gender = gender;
-        Possition = possition;
+        Position = position;
     }
 
     public string Name { get; set; }
-    public int Age { get; set; }
-    public List<string> Inventory { get; set; }
-    public string Gender { get; set; }
-    public int[,] Possition { get; set; }
-
-   
+    public int[,] Position { get; set; }
+    public void Activity()
+    {
+        Console.WriteLine("Person hälsar på Person");
+    }
 }
