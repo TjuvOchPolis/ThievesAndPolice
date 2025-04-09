@@ -9,16 +9,20 @@ internal class Thief : Person
 {
     public Thief(string name, int[,] pos) : base(name, pos)
     {
-
     }
-    public List<Item> ThiefInventory = new List<Item>();
-    public bool Arrested { get; set; }
 
-    public bool isArrested { get; set; } 
-    public override void Activity()
+    public List<Item> ThiefInventory = new List<Item>();
+    
+    public bool IsArrested { get; set; }
+
+    public override string Activity()
     {
-        Console.WriteLine($"Thief: {Name} blir arresterad");
-        isArrested = false;
+        if (IsArrested)
+        {
+            IsArrested = false;
+            return $"Thief: {Name} blir arresterad";
+        }
+        return base.Activity();
     }
 
 

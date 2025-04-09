@@ -22,8 +22,8 @@ internal class Citizen : Person
     public bool MeetPolice { get; set; }
 
 
-    public override void Activity()
+    public override string Activity()
     {
-        Console.WriteLine("Hälsar på farbror blå");
+        return "Hälsar på farbror blå";
     }
 }
