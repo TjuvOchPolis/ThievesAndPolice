@@ -144,8 +144,9 @@ namespace ThievesAndPolice
                                         thief.IsArrested = true;
                                         if (thief.IsArrested)
                                         {
-                                            thiefPrison.Add(thief);
-                                            people.Remove(thief);
+                                            //var ppl = thief;
+                                            //thiefPrison.Add(ppl);
+                                            //people.Remove(ppl);
                                         }
 
                                         News.Add(police2.Activity());
