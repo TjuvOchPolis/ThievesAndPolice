@@ -16,6 +16,11 @@ internal class Police : Person
 
     public bool Arrest { get; set; }
 
-
+    public bool isArresting { get; set; }
+    public override void Activity()
+    {
+        Console.WriteLine($"Police: {Name} arresterar tjuven.");
+        
+    }
 
 }

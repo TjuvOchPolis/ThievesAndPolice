@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ThievesAndPolice;
-internal class Person : IPerson
+internal class Person
 {
     public Person(string name, int[,] position)
     {
@@ -15,8 +15,10 @@ internal class Person : IPerson
 
     public string Name { get; set; }
     public int[,] Position { get; set; }
-    public void Activity()
+
+    public virtual void Activity()
     {
-        Console.WriteLine("Person hälsar på Person");
+
     }
+
 }

@@ -14,5 +14,12 @@ internal class Thief : Person
     public List<Item> ThiefInventory = new List<Item>();
     public bool Arrested { get; set; }
 
+    public bool isArrested { get; set; } 
+    public override void Activity()
+    {
+        Console.WriteLine($"Thief: {Name} blir arresterad");
+        isArrested = false;
+    }
+
 
 }

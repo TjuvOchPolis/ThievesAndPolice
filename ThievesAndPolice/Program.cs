@@ -5,72 +5,177 @@ namespace ThievesAndPolice
 {
     internal class Program
     {
-        static void Main(string[] args)
-        {
-            List<Person> people = new List<Person>()
+        public static List<Person> people = new List<Person>()
             {
+                new Thief("Lars", array()),
+                new Thief("Lars", array()),
+                new Thief("Lars", array()),
+                new Thief("Lars", array()),
+                new Thief("Lars", array()),
+                new Thief("Lars", array()),
+                new Thief("Lars", array()),
+                new Thief("Lars", array()),
                 new Thief("Lars", array()),
                 new Citizen("Anders", array()),
                 new Police("Gunnar", array()),
+                new Police("Gunnar", array()),
+                new Police("Gunnar", array()),
+                new Police("Gunnar", array()),
+                new Police("Gunnar", array()),
+                new Police("Gunnar", array()),
+                new Police("Gunnar", array()),
+                new Police("Gunnar", array()),
+                new Police("Gunnar", array()),
+                new Police("Gunnar", array()),
+                new Police("Gunnar", array()),
+                new Police("Gunnar", array()),
+                new Police("Gunnar", array()),
+                new Police("Gunnar", array()),
+                new Police("Gunnar", array()),
+                new Police("Gunnar", array()),
             };
+
+        public static List<Thief> thiefPrison = new List<Thief>()
+        {
+
+        };
+        static void Main(string[] args)
+        {
+            Console.CursorVisible = false;
+            Console.SetWindowSize(80, 80);
+
+            while (true)
+            {
+                Movement();
+                Logic();
+                Console.ReadKey();
+            }
+        }
+
+        public static void Logic()
+        {
+            Console.SetCursorPosition(0, 0);
+
+            
             int maxHeight = 27;
             int maxWidth = 52;
 
             char[,] city = new char[maxHeight, maxWidth];
 
-
-            Console.WriteLine("X: " + people[1].Position[0, 0]);
-            Console.WriteLine("Y: " + people[1].Position[0, 1]);
-
-            for (int y = 0; y < city.GetLength(0); y++)
+            for (int i = 0; i < people.Count; i++)
             {
-                for (int x = 0; x < city.GetLength(1); x++)
+                for (int j = 0; j < people.Count; j++)
                 {
-                    char symbol = city[y, x];
-                    if (x == 0 || y == maxHeight - 1 || y == 0 || x == maxWidth - 1)
-                        symbol = '*';
-                    else
-                        symbol = ' ';
-
-                    
-                    if (symbol == ' ')
+                    if (people[i] is Police police)
                     {
-                        foreach (Person person in people)
+                        if (people[j] is Thief thief && police.Position[0, 0] == thief.Position[0, 0] &&
+                                police.Position[0, 1] == thief.Position[0, 1])
                         {
-                            if (x == person.Position[0, 0] && y == person.Position[0, 1] && person is Police)
-                                symbol = 'P';
-                            else if (x == person.Position[0, 0] && y == person.Position[0, 1] && person is Thief)
-                                symbol = 'T';
-                            else if (x == person.Position[0, 0] && y == person.Position[0, 1] && person is Citizen)
-                                symbol = 'C';
+                            police.isArresting = true;
+                            thief.isArrested = true;
+                            if (thief.isArrested)
+                            {
+                                thiefPrison.Add(thief);
+                                people.Remove(thief);
+                            }
+
+                            police.Activity();
+                            thief.Activity();
                         }
                     }
-
-                    Console.Write(symbol);
                 }
-                Console.WriteLine();
-            }
 
-            int maxHeightPrison = 12;
-            int maxWidthPrison = 12;
-
-            char[,] prison = new char[maxHeightPrison, maxWidthPrison];
-
-            for (int x = 1; x < prison.GetLength(0); x++)
-            {
-                for (int y = 0; y < prison.GetLength(1); y++)
+                for (int y = 0; y < city.GetLength(0); y++)
                 {
-                    if (x == 0 || x == maxHeightPrison - 1 || y == 0 || y == maxWidthPrison - 1)
-                        prison[x, y] = '*';
-                    else
-                        prison[x, y] = ' ';
+                    for (int x = 0; x < city.GetLength(1); x++)
+                    {
+                        char symbol = city[y, x];
+                        if (x == 0 || y == maxHeight - 1 || y == 0 || x == maxWidth - 1)
+                            symbol = '*';
+                        else
+                            symbol = ' ';
 
 
-                    Console.Write(prison[x, y]);
+                        if (symbol == ' ')
+                        {
+                            foreach (Person person in people)
+                            {
+                                if (x == person.Position[0, 0] && y == person.Position[0, 1] && person is Police police)
+                                    symbol = 'P';
+                                else if (x == person.Position[0, 0] && y == person.Position[0, 1] && person is Thief thief)
+                                    symbol = 'T';
+                                else if (x == person.Position[0, 0] && y == person.Position[0, 1] && person is Citizen citizen)
+                                    symbol = 'C';
+                            }
+                        }
+                        Console.SetCursorPosition(x, y);
+                        Console.Write(symbol);
+                    }
+                    Console.WriteLine();
                 }
-                Console.WriteLine();
+
+
+                // PRISON
+                int maxHeightPrison = 12;
+                int maxWidthPrison = 12;
+
+                char[,] prison = new char[maxHeightPrison, maxWidthPrison];
+
+                for (int x = 1; x < prison.GetLength(0); x++)
+                {
+                    for (int y = 0; y < prison.GetLength(1); y++)
+                    {
+                        char symbol = prison[x, y];
+                        if (x == 0 || x == maxHeightPrison - 1 || y == 0 || y == maxWidthPrison - 1)
+                            symbol = '*';
+                        else
+                            symbol = ' ';
+                        
+                        if (symbol == ' ')
+                        {
+                            foreach (Thief thief in thiefPrison)
+                            {
+                                if (x == thief.Position[0, 0] && y == thief.Position[0, 1])
+                                    symbol = 'T';
+
+                                thief.Position[0, 0] = Math.Clamp(thief.Position[0, 0], 1, 9); // x
+                                thief.Position[0, 1] = Math.Clamp(thief.Position[0, 1], 1, 9); // y
+                            }
+                        }
+
+                        Console.Write(symbol);
+                    }
+                    Console.WriteLine();
+                }
             }
         }
+
+        public static void Movement()
+        {
+            Random rnd = new Random();
+            foreach (var person in people)
+            {
+                int nextMove = rnd.Next(1, 8 + 1);
+                switch (nextMove)
+                {
+                    case 1: person.Position[0, 0] += 1; break;
+                    case 2: person.Position[0, 0] -= 1; break;
+                    case 3: person.Position[0, 1] += 1; break;
+                    case 4: person.Position[0, 1] -= 1; break;
+                    case 5: person.Position[0, 0] += 1; person.Position[0, 1] += 1; break;
+                    case 6: person.Position[0, 0] += 1; person.Position[0, 1] -= 1; break;
+                    case 7: person.Position[0, 0] -= 1; person.Position[0, 1] -= 1; break;
+                    case 8: person.Position[0, 0] -= 1; person.Position[0, 1] += 1; break;
+                }
+
+
+                //Math.Clamp sätter ett min och max värde för PositionX och PositionY så slipper man alla if klausuler
+                person.Position[0, 0] = Math.Clamp(person.Position[0, 0], 1, 48); // x
+                person.Position[0, 1] = Math.Clamp(person.Position[0, 1], 1, 23); // y
+
+            }
+        }
+
         static int[,] array()
         {
             return new int[,]
@@ -86,5 +191,6 @@ namespace ThievesAndPolice
             // Returnerar ett random nummer mellan 0 och 22 för Y-axeln
             return Random.Shared.Next(0, 23);
         }
+
     }
 }
