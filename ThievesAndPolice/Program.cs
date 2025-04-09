@@ -83,7 +83,7 @@ namespace ThievesAndPolice
         public static void Logic()
         {
             Console.SetCursorPosition(0, 0);
-
+            List<Person> toDelete = new List<Person>();
 
             int maxHeight = 27;
             int maxWidth = 52;
@@ -105,10 +105,9 @@ namespace ThievesAndPolice
                             police.IsArresting = true;
                             thief.IsArrested = true;
                             if (thief.IsArrested)
-                            {
-                                var item = thief;
-                                thiefPrison.Add(item);
-                                people.Remove(item);
+                            {                                
+                                thiefPrison.Add(thief);
+                                toDelete.Add(thief);
                             }
 
                             News.Add(police.Activity());
@@ -117,6 +116,11 @@ namespace ThievesAndPolice
                         }
                     }
                 }
+            }
+            // För att inte programmet skall krasha
+            foreach(var p in toDelete)
+            {
+                people.Remove(p);
             }
 
             for (int y = 0; y < city.GetLength(0); y++)
