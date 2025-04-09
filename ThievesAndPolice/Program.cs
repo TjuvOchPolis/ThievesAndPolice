@@ -77,12 +77,7 @@ namespace ThievesAndPolice
                 int number = 28;
                 foreach (var item in News)
                 {
-                    //if(que.Count >= 5)
-                    //{
-                    //    que.Dequeue();
-                    //}
-
-
+                    
                     if (counter < 4)
                     {
                         Console.SetCursorPosition(14, number);
@@ -90,7 +85,6 @@ namespace ThievesAndPolice
                         counter++;
                         number++;
                     }
-
                 }
                 Console.ReadKey();
                 Console.Clear();
@@ -125,8 +119,7 @@ namespace ThievesAndPolice
                             thief.IsArrested = true;
                             if (thief.IsArrested)
                             {
-                                var item = thief;
-
+                                var item = thief;                                
                                 thiefPrison.Add(item);
                                 people.Remove(thief);
                             }
