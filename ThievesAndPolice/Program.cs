@@ -50,19 +50,6 @@ namespace ThievesAndPolice
                 new Police("Gunnar", array()),
                 new Police("Gunnar", array()),
                 new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
             };
 
         public static List<Thief> thiefPrison = new List<Thief>()
@@ -122,6 +109,9 @@ namespace ThievesAndPolice
 
             char[,] city = new char[maxHeight, maxWidth];
 
+
+            // PEOPLE INTERACTION LOGIC
+
             for (int i = 0; i < people.Count; i++)
             {
                 for (int j = 0; j < people.Count; j++)
@@ -149,34 +139,34 @@ namespace ThievesAndPolice
                 }
             }
 
-            for (int y = 0; y < city.GetLength(0); y++)
-            {
-                for (int x = 0; x < city.GetLength(1); x++)
+                for (int y = 0; y < city.GetLength(0); y++)
                 {
-                    char symbol = city[y, x];
-                    if (x == 0 || y == maxHeight - 1 || y == 0 || x == maxWidth - 1)
-                        symbol = '*';
-                    else
-                        symbol = ' ';
-
-
-                    if (symbol == ' ')
+                    for (int x = 0; x < city.GetLength(1); x++)
                     {
-                        foreach (Person person in people)
+                        char symbol = city[y, x];
+                        if (x == 0 || y == maxHeight - 1 || y == 0 || x == maxWidth - 1)
+                            symbol = '*';
+                        else
+                            symbol = ' ';
+
+
+                        if (symbol == ' ')
                         {
-                            if (x == person.Position[0, 0] && y == person.Position[0, 1] && person is Police police)
-                                symbol = 'P';
-                            else if (x == person.Position[0, 0] && y == person.Position[0, 1] && person is Thief thief)
-                                symbol = 'T';
-                            else if (x == person.Position[0, 0] && y == person.Position[0, 1] && person is Citizen citizen)
-                                symbol = 'C';
+                            foreach (Person person in people)
+                            {
+                                if (x == person.Position[0, 0] && y == person.Position[0, 1] && person is Police police)
+                                    symbol = 'P';
+                                else if (x == person.Position[0, 0] && y == person.Position[0, 1] && person is Thief thief)
+                                    symbol = 'T';
+                                else if (x == person.Position[0, 0] && y == person.Position[0, 1] && person is Citizen citizen)
+                                    symbol = 'C';
+                            }
                         }
+                        Console.SetCursorPosition(x, y);
+                        Console.Write(symbol);
                     }
-                    Console.SetCursorPosition(x, y);
-                    Console.Write(symbol);
+                    Console.WriteLine();
                 }
-                Console.WriteLine();
-            }
 
 
             // PRISON
