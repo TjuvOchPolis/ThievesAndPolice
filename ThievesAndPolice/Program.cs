@@ -125,9 +125,9 @@ namespace ThievesAndPolice
                             thief.IsArrested = true;
                             if (thief.IsArrested)
                             {
-                                List<Person> dump = new List<Person>();
-                                
-                                thiefPrison.Add(thief);
+                                var item = thief;
+
+                                thiefPrison.Add(item);
                                 people.Remove(thief);
                             }
 
