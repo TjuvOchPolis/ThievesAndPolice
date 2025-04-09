@@ -92,32 +92,31 @@ namespace ThievesAndPolice
 
 
             // PEOPLE INTERACTION LOGIC
+           
+            //for (int i = 0; i < people.Count ; i++)
+            //{
+            //    for (int j = 0; j < people.Count; j++)
+            //    {
+            //        if (people[i] is Police police)
+            //        {
+            //            if (people[j] is Thief thief && police.Position[0, 0] == thief.Position[0, 0] &&
+            //                    police.Position[0, 1] == thief.Position[0, 1])
+            //            {
+            //                police.IsArresting = true;
+            //                thief.IsArrested = true;
+            //                if (thief.IsArrested)
+            //                {                                
+            //                    thiefPrison.Add(thief);
+            //                    people.Remove(thief);
+            //                }
 
-            for (int i = 0; i < people.Count; i++)
-            {
-                for (int j = 0; j < people.Count; j++)
-                {
-                    if (people[i] is Police police)
-                    {
-                        if (people[j] is Thief thief && police.Position[0, 0] == thief.Position[0, 0] &&
-                                police.Position[0, 1] == thief.Position[0, 1])
-                        {
-                            police.IsArresting = true;
-                            thief.IsArrested = true;
-                            if (thief.IsArrested)
-                            {
-                                var item = thief;
-                                thiefPrison.Add(item);
-                                people.Remove(item);
-                            }
+            //                News.Add(police.Activity());
+            //                News.Add(thief.Activity());
 
-                            News.Add(police.Activity());
-                            News.Add(thief.Activity());
-
-                        }
-                    }
-                }
-            }
+            //            }
+            //        }
+            //    }
+            //}
 
             for (int y = 0; y < city.GetLength(0); y++)
             {
@@ -134,6 +133,28 @@ namespace ThievesAndPolice
                     {
                         foreach (Person person in people)
                         {
+                            foreach (Person person2 in people)
+                            {
+                                if (person is Police police2)
+                                {
+                                    if (person2 is Thief thief && police2.Position[0, 0] == thief.Position[0, 0] &&
+                                            police2.Position[0, 1] == thief.Position[0, 1])
+                                    {
+                                        police2.IsArresting = true;
+                                        thief.IsArrested = true;
+                                        if (thief.IsArrested)
+                                        {
+                                            thiefPrison.Add(thief);
+                                            people.Remove(thief);
+                                        }
+
+                                        News.Add(police2.Activity());
+                                        News.Add(thief.Activity());
+
+                                    }
+                                }
+                            }
+
                             if (x == person.Position[0, 0] && y == person.Position[0, 1] && person is Police police)
                             {
                                 Console.ForegroundColor = ConsoleColor.Blue;
