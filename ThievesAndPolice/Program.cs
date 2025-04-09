@@ -111,7 +111,7 @@ namespace ThievesAndPolice
                                 people.Remove(item);
                             }
 
-                            News.Add(new string(police.Activity()));
+                            News.Add(police.Activity());
                             News.Add(thief.Activity());
 
                         }
