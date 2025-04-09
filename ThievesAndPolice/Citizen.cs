@@ -20,4 +20,10 @@ internal class Citizen : Person
     public List<Item> CitizenInvetory = new List<Item>(); 
     public bool IsRobbed { get; set; }
     public bool MeetPolice { get; set; }
+
+
+    public override void Activity()
+    {
+        Console.WriteLine("Hälsar på farbror blå");
+    }
 }
