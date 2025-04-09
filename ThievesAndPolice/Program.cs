@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography;
 
 namespace ThievesAndPolice
 {
@@ -12,45 +13,50 @@ namespace ThievesAndPolice
                 new Citizen("Anders", array()),
                 new Police("Gunnar", array()),
             };
-            int maxHeight = 25;
-            int maxWidth = 50;
+            int maxHeight = 27;
+            int maxWidth = 52;
 
             char[,] city = new char[maxHeight, maxWidth];
 
-            for (int x = 0; x < city.GetLength(0); x++)
+
+            Console.WriteLine("X: " + people[1].Position[0, 0]);
+            Console.WriteLine("Y: " + people[1].Position[0, 1]);
+
+            for (int y = 0; y < city.GetLength(0); y++)
             {
-                for (int y = 0; y < city.GetLength(1); y++)
+                for (int x = 0; x < city.GetLength(1); x++)
                 {
-                    char symbol = city[x, y];
-                    if (x == 0 || x == maxHeight - 1 || y == 0 || y == maxWidth - 1)
+                    char symbol = city[y, x];
+                    if (x == 0 || y == maxHeight - 1 || y == 0 || x == maxWidth - 1)
                         symbol = '*';
                     else
                         symbol = ' ';
 
-                    foreach (Person person in people)
+                    
+                    if (symbol == ' ')
                     {
-                        if (symbol == ' ')
+                        foreach (Person person in people)
                         {
-                            if (city[x,y] == person.Position[x, y] && person is Police)
+                            if (x == person.Position[0, 0] && y == person.Position[0, 1] && person is Police)
                                 symbol = 'P';
-                            else if (city[x, y] == person.Position[x, y] && person is Thief)
+                            else if (x == person.Position[0, 0] && y == person.Position[0, 1] && person is Thief)
                                 symbol = 'T';
-                            else if (city[x, y] == person.Position[x, y] && person is Citizen)
+                            else if (x == person.Position[0, 0] && y == person.Position[0, 1] && person is Citizen)
                                 symbol = 'C';
                         }
                     }
 
-                    Console.Write(city[x, y]);
+                    Console.Write(symbol);
                 }
                 Console.WriteLine();
             }
 
-            int maxHeightPrison = 10;
-            int maxWidthPrison = 10;
+            int maxHeightPrison = 12;
+            int maxWidthPrison = 12;
 
             char[,] prison = new char[maxHeightPrison, maxWidthPrison];
 
-            for (int x = 0; x < prison.GetLength(0); x++)
+            for (int x = 1; x < prison.GetLength(0); x++)
             {
                 for (int y = 0; y < prison.GetLength(1); y++)
                 {
