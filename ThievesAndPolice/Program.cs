@@ -71,21 +71,8 @@ namespace ThievesAndPolice
 
                 Logic(); // Kordinater för City
 
-               
-                News.Reverse();
-                int counter = 0;
-                int number = 28;
-                foreach (var item in News)
-                {
-                    
-                    if (counter < 4)
-                    {
-                        Console.SetCursorPosition(14, number);
-                        Console.WriteLine(item);
-                        counter++;
-                        number++;
-                    }
-                }
+                Newsfeed();
+
                 Console.ReadKey();
                 Console.Clear();
             }
@@ -119,9 +106,9 @@ namespace ThievesAndPolice
                             thief.IsArrested = true;
                             if (thief.IsArrested)
                             {
-                                var item = thief;                                
+                                var item = thief;
                                 thiefPrison.Add(item);
-                                people.Remove(thief);
+                                people.Remove(item);
                             }
 
                             News.Add(new string(police.Activity()));
@@ -132,34 +119,44 @@ namespace ThievesAndPolice
                 }
             }
 
-                for (int y = 0; y < city.GetLength(0); y++)
+            for (int y = 0; y < city.GetLength(0); y++)
+            {
+                for (int x = 0; x < city.GetLength(1); x++)
                 {
-                    for (int x = 0; x < city.GetLength(1); x++)
+                    char symbol = city[y, x];
+                    if (x == 0 || y == maxHeight - 1 || y == 0 || x == maxWidth - 1)
+                        symbol = '*';
+                    else
+                        symbol = ' ';
+
+
+                    if (symbol == ' ')
                     {
-                        char symbol = city[y, x];
-                        if (x == 0 || y == maxHeight - 1 || y == 0 || x == maxWidth - 1)
-                            symbol = '*';
-                        else
-                            symbol = ' ';
-
-
-                        if (symbol == ' ')
+                        foreach (Person person in people)
                         {
-                            foreach (Person person in people)
+                            if (x == person.Position[0, 0] && y == person.Position[0, 1] && person is Police police)
                             {
-                                if (x == person.Position[0, 0] && y == person.Position[0, 1] && person is Police police)
-                                    symbol = 'P';
-                                else if (x == person.Position[0, 0] && y == person.Position[0, 1] && person is Thief thief)
-                                    symbol = 'T';
-                                else if (x == person.Position[0, 0] && y == person.Position[0, 1] && person is Citizen citizen)
-                                    symbol = 'C';
+                                Console.ForegroundColor = ConsoleColor.Blue;
+                                symbol = 'P';
+                            }
+                            else if (x == person.Position[0, 0] && y == person.Position[0, 1] && person is Thief thief)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                symbol = 'T';
+                            }
+                            else if (x == person.Position[0, 0] && y == person.Position[0, 1] && person is Citizen citizen)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                symbol = 'C';
                             }
                         }
-                        Console.SetCursorPosition(x, y);
-                        Console.Write(symbol);
                     }
-                    Console.WriteLine();
+                    Console.SetCursorPosition(x, y);
+                    Console.Write(symbol);
+                    Console.ResetColor();
                 }
+                Console.WriteLine();
+            }
 
 
             // PRISON
@@ -183,17 +180,40 @@ namespace ThievesAndPolice
                         foreach (Thief thief in thiefPrison)
                         {
                             if (x == thief.Position[0, 0] && y == thief.Position[0, 1])
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 symbol = 'T';
+                            }
                         }
                     }
 
                     Console.Write(symbol);
+                    Console.ResetColor();
                 }
                 Console.WriteLine();
             }
-            
+
         }
 
+        public static void Newsfeed()
+        {
+            News.Reverse();
+            int counter = 0;
+            int number = 28;
+            Console.SetCursorPosition(14, 27);
+            Console.WriteLine("Nyheter: ");
+            foreach (var item in News)
+            {
+
+                if (counter < 4)
+                {
+                    Console.SetCursorPosition(14, number);
+                    Console.WriteLine(item);
+                    counter++;
+                    number++;
+                }
+            }
+        }
         public static void Movement()
         {
             Random rnd = new Random();
