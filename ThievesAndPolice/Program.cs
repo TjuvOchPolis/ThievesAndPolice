@@ -8,31 +8,8 @@ namespace ThievesAndPolice
         public static List<Person> people = new List<Person>()
             {
                 new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
                 new Citizen("Anders", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
+                new Police("Gunnar", array())
             };
 
         public static List<Thief> thiefPrison = new List<Thief>()
@@ -62,6 +39,9 @@ namespace ThievesAndPolice
 
             char[,] city = new char[maxHeight, maxWidth];
 
+
+            // PEOPLE INTERACTION LOGIC
+
             for (int i = 0; i < people.Count; i++)
             {
                 for (int j = 0; j < people.Count; j++)
@@ -85,6 +65,8 @@ namespace ThievesAndPolice
                     }
                 }
 
+
+                // CITY
                 for (int y = 0; y < city.GetLength(0); y++)
                 {
                     for (int x = 0; x < city.GetLength(1); x++)
@@ -95,7 +77,7 @@ namespace ThievesAndPolice
                         else
                             symbol = ' ';
 
-
+                        // PEOPLE
                         if (symbol == ' ')
                         {
                             foreach (Person person in people)
