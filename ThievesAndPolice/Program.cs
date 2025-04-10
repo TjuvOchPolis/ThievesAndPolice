@@ -89,7 +89,7 @@ namespace ThievesAndPolice
 
                 Newsfeed();
 
-                Console.ReadKey();
+                //Console.ReadKey();
                 //Console.Clear();
             }
         }
@@ -111,7 +111,7 @@ namespace ThievesAndPolice
             // PEOPLE INTERACTION LOGIC
 
             for (int i = 0; i < people.Count; i++)
-            {
+            {                
                 for (int j = 0; j < people.Count; j++)
                 {
                     if (people[i] is Police police)
