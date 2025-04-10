@@ -106,16 +106,14 @@ namespace ThievesAndPolice
                     {
                         if (people[j] is Thief thief && police.Position[0, 0] == thief.Position[0, 0] &&
                                 police.Position[0, 1] == thief.Position[0, 1] && thief.ThiefInventory.Count > 0)
-                        {
-                            int numberItems = 0;
+                        {                            
                             police.IsArresting = true;
                             thief.IsArrested = true;
 
                             if (thief.IsArrested)
                             {
                                 if (thief.ThiefInventory.Count > 0)
-                                {
-                                    numberItems = thief.ThiefInventory.Count;
+                                {                                    
                                     foreach (var item in thief.ThiefInventory)
                                     {
                                         police.PoliceInventory.Push(item);
