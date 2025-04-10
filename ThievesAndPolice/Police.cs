@@ -21,9 +21,9 @@ internal class Police : Person
     {
         List<string> words = new List<string>()
         {
-            "och gråter en stor pöl                 ",
-            "och spottar polisen i ansiktet         ",
-            "och blir förbannad och försöker springa"
+            "och gråter en stor pöl                   ",
+            "och spottar polisen i ansiktet           ",
+            "och blir förbannad och försöker springa  "
         };
 
         int random = Random.Shared.Next(0, words.Count);
