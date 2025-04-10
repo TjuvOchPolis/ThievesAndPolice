@@ -112,9 +112,29 @@ namespace ThievesAndPolice
                             NewsFeed.Push(police.Activity(thief.Name));
                         }
                     }
+                    else if(people[i] is Thief thief)
+                    {
+                        if (people[j] is Citizen citizen && thief.Position[0, 0] == citizen.Position[0, 0] &&
+                                thief.Position[0, 1] == citizen.Position[0, 1])
+                        {
+                            
+
+                            NewsFeed.Push(thief.Activity(citizen.Name));
+                        }
+                    }
+                    else if(people[i] is Citizen citizen)
+                    {
+                        if (people[j] is Police police2 && citizen.Position[0, 0] == police2.Position[0, 0] &&
+                              citizen.Position[0, 1] == police2.Position[0, 1])
+                        {
+
+                            NewsFeed.Push(citizen.Activity(police2.Name));
+                        }
+                    }
+
                 }
             }
-            // För att inte programmet skall krasha
+            // För att programmet INTE skall krasha
             foreach (var p in toDelete)
             {
                 people.Remove(p);
