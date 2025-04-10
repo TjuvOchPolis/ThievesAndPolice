@@ -17,9 +17,18 @@ internal class Police : Person
     public bool Arrest { get; set; }
 
     public bool IsArresting { get; set; }
-    public override string Activity()
+    public override string Activity(string input)
     {
-       return $"Police: {Name} arresterar tjuven.";
+        List<string> words = new List<string>()
+        {
+            "och gråter en stor pöl                 ",
+            "och spottar polisen i ansiktet         ",
+            "och blir förbannad och försöker springa"
+        };
+
+        int random = Random.Shared.Next(0, words.Count);
+
+       return $"Police: {Name} arresterar tjuven {input} blir arresterad {words[random]}";
         
     }
 
