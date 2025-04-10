@@ -107,6 +107,7 @@ namespace ThievesAndPolice
                         if (people[j] is Thief thief && police.Position[0, 0] == thief.Position[0, 0] &&
                                 police.Position[0, 1] == thief.Position[0, 1] && thief.ThiefInventory.Count > 0)
                         {
+                            int numberItems = 0;
                             police.IsArresting = true;
                             thief.IsArrested = true;
 
@@ -114,6 +115,7 @@ namespace ThievesAndPolice
                             {
                                 if (thief.ThiefInventory.Count > 0)
                                 {
+                                    numberItems = thief.ThiefInventory.Count;
                                     foreach (var item in thief.ThiefInventory)
                                     {
                                         police.PoliceInventory.Push(item);
@@ -126,6 +128,7 @@ namespace ThievesAndPolice
                             }
 
                             NewsFeed.Push(police.Activity(thief.Name));
+                            
                         }
                     }
                     else if (people[i] is Thief thief)
@@ -245,7 +248,9 @@ namespace ThievesAndPolice
             int counter = 0;
             int number = 28; // till för att sätta vart utskriften skall vara
             Console.SetCursorPosition(14, 27);
+            Console.ForegroundColor= ConsoleColor.DarkBlue;
             Console.WriteLine("Nyheter: ");
+            Console.ResetColor();
 
             if (NewsFeed.Count > 0)
             {
@@ -253,8 +258,10 @@ namespace ThievesAndPolice
                 {
                     if (counter < 4)
                     {
+                        Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.SetCursorPosition(14, number);
                         Console.WriteLine(news);
+                        Console.ResetColor() ;
                         counter++;
                         number++;
                     }
