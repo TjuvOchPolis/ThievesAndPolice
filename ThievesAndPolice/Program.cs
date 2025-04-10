@@ -107,7 +107,7 @@ namespace ThievesAndPolice
             char[,] city = new char[maxHeight, maxWidth];
 
             Stack<Item> items = new Stack<Item>();
-
+            string name = "";
             // PEOPLE INTERACTION LOGIC
 
             for (int i = 0; i < people.Count; i++)
@@ -146,8 +146,8 @@ namespace ThievesAndPolice
                         if (people[j] is Citizen citizen && thief.Position[0, 0] == citizen.Position[0, 0] &&
                                 thief.Position[0, 1] == citizen.Position[0, 1] && citizen.CitizenInvetory.Count > 0)
                         {
+                            name = citizen.Name;                            
                             items.Push(citizen.CitizenInvetory.Peek());
-                            citizen.CitizenInvetory.Pop();
                             thief.ThiefInventory.Push(items.Peek());
 
                             NewsFeed.Push(thief.Activity(citizen.Name));
@@ -165,8 +165,13 @@ namespace ThievesAndPolice
                     }
                 }
             }
-            if (items.Count > 0)
-                items.Clear();
+
+            foreach (var person in people)
+            {
+                if (person is Citizen citizen && citizen.Name == name)
+                    citizen.CitizenInvetory.Pop();
+            }
+            
 
             // För att programmet INTE skall krasha
             foreach (var p in toDelete)
