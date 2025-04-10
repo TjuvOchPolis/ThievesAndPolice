@@ -15,14 +15,14 @@ internal class Thief : Person
     
     public bool IsArrested { get; set; }
 
-    public override string Activity()
+    public override string Activity(string input)
     {
         if (IsArrested)
         {
             IsArrested = false;
             return $"Thief: {Name} blir arresterad";
         }
-        return base.Activity();
+        return base.Activity("");
     }
 
 

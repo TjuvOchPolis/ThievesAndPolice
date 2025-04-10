@@ -56,7 +56,7 @@ namespace ThievesAndPolice
         {
         };
 
-        static Stack<string> stackList = new Stack<string>();
+        static Stack<string> NewsFeed = new Stack<string>();
 
         static void Main(string[] args)
         {
@@ -109,9 +109,9 @@ namespace ThievesAndPolice
                                 toDelete.Add(thief);
                             }
 
-                            stackList.Push(police.Activity());
-                            stackList.Push(thief.Activity());
+                            
 
+                            NewsFeed.Push(police.Activity(thief.Name));
                         }
                     }
                 }
@@ -205,9 +205,9 @@ namespace ThievesAndPolice
             Console.SetCursorPosition(14, 27);
             Console.WriteLine("Nyheter: ");
 
-            if (stackList.Count > 0)
+            if (NewsFeed.Count > 0)
             {
-                foreach (var news in stackList)
+                foreach (var news in NewsFeed)
                 {
                     if (counter < 4)
                     {
@@ -218,8 +218,6 @@ namespace ThievesAndPolice
                     }
                 }
             }
-
-
         }
         public static void Movement()
         {

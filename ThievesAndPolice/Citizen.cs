@@ -22,7 +22,7 @@ internal class Citizen : Person
     public bool MeetPolice { get; set; }
 
 
-    public override string Activity()
+    public override string Activity(string input)
     {
         return "Hälsar på farbror blå";
     }
