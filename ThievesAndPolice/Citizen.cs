@@ -11,19 +11,19 @@ internal class Citizen : Person
 {
     public Citizen(string name, int[,] pos) : base(name, pos)
     {
-        CitizenInvetory.Add(new Item("Wallet"));
-        CitizenInvetory.Add(new Item("Phone"));
-        CitizenInvetory.Add(new Item("Money"));
-        CitizenInvetory.Add(new Item("Watch"));
+        CitizenInvetory.Push(new Item("Wallet"));
+        CitizenInvetory.Push(new Item("Phone"));
+        CitizenInvetory.Push(new Item("Money"));
+        CitizenInvetory.Push(new Item("Watch"));
     }
 
-    public List<Item> CitizenInvetory = new List<Item>(); 
+    public Stack<Item> CitizenInvetory = new Stack<Item>(); 
     public bool IsRobbed { get; set; }
     public bool MeetPolice { get; set; }
 
 
     public override string Activity(string input)
     {
-        return "Hälsar på farbror blå";
+        return $"{Name} hälsar på farbror blå                                                                  ";
     }
 }

@@ -8,6 +8,13 @@ namespace ThievesAndPolice
         public static List<Person> people = new List<Person>()
             {
                 new Thief("Tjuv1", array()),
+                new Police("1", array()),
+                new Citizen("Anders", array()),
+                new Citizen("Anders", array()),
+                new Citizen("Anders", array()),
+                new Citizen("Anders", array()),
+                new Citizen("Anders", array()),
+                new Citizen("Anders", array()),
                 new Thief("Tjuv2", array()),
                 new Thief("Tjuv3", array()),
                 new Thief("Tjuv4", array()),
@@ -33,8 +40,6 @@ namespace ThievesAndPolice
                 new Thief("Tjuv24", array()),
                 new Thief("Tjuv25", array()),
                 new Thief("Tjuv26", array()),
-                new Citizen("Anders", array()),
-                new Police("1", array()),
                 new Police("2", array()),
                 new Police("3", array()),
                 new Police("4", array()),
@@ -89,6 +94,7 @@ namespace ThievesAndPolice
 
             char[,] city = new char[maxHeight, maxWidth];
 
+            Stack<Item> items = new Stack<Item>();
 
             // PEOPLE INTERACTION LOGIC
 
@@ -99,12 +105,22 @@ namespace ThievesAndPolice
                     if (people[i] is Police police)
                     {
                         if (people[j] is Thief thief && police.Position[0, 0] == thief.Position[0, 0] &&
-                                police.Position[0, 1] == thief.Position[0, 1])
+                                police.Position[0, 1] == thief.Position[0, 1] && thief.ThiefInventory.Count > 0)
                         {
                             police.IsArresting = true;
                             thief.IsArrested = true;
+
                             if (thief.IsArrested)
                             {
+                                if (thief.ThiefInventory.Count > 0)
+                                {
+                                    foreach (var item in thief.ThiefInventory)
+                                    {
+                                        police.PoliceInventory.Push(item);
+                                    }
+                                    thief.ThiefInventory.Clear();
+                                }
+
                                 thiefPrison.Add(thief);
                                 toDelete.Add(thief);
                             }
@@ -112,17 +128,22 @@ namespace ThievesAndPolice
                             NewsFeed.Push(police.Activity(thief.Name));
                         }
                     }
-                    else if(people[i] is Thief thief)
+                    else if (people[i] is Thief thief)
                     {
                         if (people[j] is Citizen citizen && thief.Position[0, 0] == citizen.Position[0, 0] &&
                                 thief.Position[0, 1] == citizen.Position[0, 1])
                         {
-                            
+                            if (citizen.CitizenInvetory.Count > 0)
+                            {
+                                items.Push(citizen.CitizenInvetory.Peek());
+                                thief.ThiefInventory.Push(citizen.CitizenInvetory.Peek());
+                            }
+
 
                             NewsFeed.Push(thief.Activity(citizen.Name));
                         }
                     }
-                    else if(people[i] is Citizen citizen)
+                    else if (people[i] is Citizen citizen)
                     {
                         if (people[j] is Police police2 && citizen.Position[0, 0] == police2.Position[0, 0] &&
                               citizen.Position[0, 1] == police2.Position[0, 1])
@@ -130,10 +151,13 @@ namespace ThievesAndPolice
 
                             NewsFeed.Push(citizen.Activity(police2.Name));
                         }
-                    }
 
+                    }
                 }
             }
+            if (items.Count > 0)
+                items.Clear();
+
             // För att programmet INTE skall krasha
             foreach (var p in toDelete)
             {

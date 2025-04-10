@@ -11,18 +11,13 @@ internal class Thief : Person
     {
     }
 
-    public List<Item> ThiefInventory = new List<Item>();
+    public Stack<Item> ThiefInventory = new Stack<Item>();
     
     public bool IsArrested { get; set; }
 
     public override string Activity(string input)
     {
-        if (IsArrested)
-        {
-            IsArrested = false;
-            return $"Thief: {Name} blir arresterad";
-        }
-        return base.Activity("");
+        return $"Tjuven {Name} tar item {ThiefInventory.Peek().Name} ifrån stackars {input}";
     }
 
 

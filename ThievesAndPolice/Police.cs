@@ -12,7 +12,7 @@ internal class Police : Person
         Name = name;
     }
 
-    public List<Item> PoliceInventory = new List<Item>();
+    public Stack<Item> PoliceInventory = new Stack<Item>();
 
     public bool Arrest { get; set; }
 
