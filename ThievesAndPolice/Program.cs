@@ -109,8 +109,6 @@ namespace ThievesAndPolice
                                 toDelete.Add(thief);
                             }
 
-                            
-
                             NewsFeed.Push(police.Activity(thief.Name));
                         }
                     }
