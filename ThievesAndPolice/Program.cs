@@ -62,7 +62,6 @@ namespace ThievesAndPolice
         {
             Console.CursorVisible = false;
             Console.SetWindowSize(60, 40);
-            News.Reverse();            
 
             while (true)
             {
