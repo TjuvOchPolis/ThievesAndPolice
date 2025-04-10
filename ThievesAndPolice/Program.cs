@@ -7,62 +7,62 @@ namespace ThievesAndPolice
     {
         public static List<Person> people = new List<Person>()
             {
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
-                new Thief("Lars", array()),
+                new Thief("Tjuv1", array()),
+                new Thief("Tjuv2", array()),
+                new Thief("Tjuv3", array()),
+                new Thief("Tjuv4", array()),
+                new Thief("Tjuv5", array()),
+                new Thief("Tjuv6", array()),
+                new Thief("Tjuv7", array()),
+                new Thief("Tjuv8", array()),
+                new Thief("Tjuv9", array()),
+                new Thief("Tjuv10", array()),
+                new Thief("Tjuv11", array()),
+                new Thief("Tjuv12", array()),
+                new Thief("Tjuv13", array()),
+                new Thief("Tjuv14", array()),
+                new Thief("Tjuv15", array()),
+                new Thief("Tjuv16", array()),
+                new Thief("Tjuv17", array()),
+                new Thief("Tjuv18", array()),
+                new Thief("Tjuv19", array()),
+                new Thief("Tjuv20", array()),
+                new Thief("Tjuv21", array()),
+                new Thief("Tjuv22", array()),
+                new Thief("Tjuv23", array()),
+                new Thief("Tjuv24", array()),
+                new Thief("Tjuv25", array()),
+                new Thief("Tjuv26", array()),
                 new Citizen("Anders", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
-                new Police("Gunnar", array()),
+                new Police("1", array()),
+                new Police("2", array()),
+                new Police("3", array()),
+                new Police("4", array()),
+                new Police("5", array()),
+                new Police("6", array()),
+                new Police("7", array()),
+                new Police("8", array()),
+                new Police("9", array()),
+                new Police("10", array()),
+                new Police("11", array()),
+                new Police("12", array()),
+                new Police("13", array()),
+                new Police("14", array()),
+                new Police("15", array()),
+                new Police("16", array()),
             };
 
         public static List<Thief> thiefPrison = new List<Thief>()
         {
         };
 
-        public static Queue<string> que = new Queue<string>();
-        public static List<string> News = new List<string>();
+        static Stack<string> stackList = new Stack<string>();
 
         static void Main(string[] args)
         {
             Console.CursorVisible = false;
             Console.SetWindowSize(60, 40);
+            News.Reverse();            
 
             while (true)
             {
@@ -74,7 +74,7 @@ namespace ThievesAndPolice
                 Newsfeed();
 
                 Console.ReadKey();
-                Console.Clear();
+                //Console.Clear();
             }
         }
 
@@ -105,20 +105,20 @@ namespace ThievesAndPolice
                             police.IsArresting = true;
                             thief.IsArrested = true;
                             if (thief.IsArrested)
-                            {                                
+                            {
                                 thiefPrison.Add(thief);
                                 toDelete.Add(thief);
                             }
 
-                            News.Add(police.Activity());
-                            News.Add(thief.Activity());
+                            stackList.Push(police.Activity());
+                            stackList.Push(thief.Activity());
 
                         }
                     }
                 }
             }
             // För att inte programmet skall krasha
-            foreach(var p in toDelete)
+            foreach (var p in toDelete)
             {
                 people.Remove(p);
             }
@@ -201,22 +201,26 @@ namespace ThievesAndPolice
 
         public static void Newsfeed()
         {
-            News.Reverse();
             int counter = 0;
-            int number = 28;
+            int number = 28; // till för att sätta vart utskriften skall vara
             Console.SetCursorPosition(14, 27);
             Console.WriteLine("Nyheter: ");
-            foreach (var item in News)
-            {
 
-                if (counter < 4)
+            if (stackList.Count > 0)
+            {
+                foreach (var news in stackList)
                 {
-                    Console.SetCursorPosition(14, number);
-                    Console.WriteLine(item);
-                    counter++;
-                    number++;
+                    if (counter < 4)
+                    {
+                        Console.SetCursorPosition(14, number);
+                        Console.WriteLine(news);
+                        counter++;
+                        number++;
+                    }
                 }
             }
+
+
         }
         public static void Movement()
         {
