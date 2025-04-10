@@ -144,14 +144,11 @@ namespace ThievesAndPolice
                     else if (people[i] is Thief thief)
                     {
                         if (people[j] is Citizen citizen && thief.Position[0, 0] == citizen.Position[0, 0] &&
-                                thief.Position[0, 1] == citizen.Position[0, 1])
+                                thief.Position[0, 1] == citizen.Position[0, 1] && citizen.CitizenInvetory.Count > 0)
                         {
-                            if (citizen.CitizenInvetory.Count > 0)
-                            {
-                                items.Push(citizen.CitizenInvetory.Peek());
-                                thief.ThiefInventory.Push(citizen.CitizenInvetory.Peek());
-                            }
-
+                            items.Push(citizen.CitizenInvetory.Peek());
+                            citizen.CitizenInvetory.Pop();
+                            thief.ThiefInventory.Push(items.Peek());
 
                             NewsFeed.Push(thief.Activity(citizen.Name));
                         }
