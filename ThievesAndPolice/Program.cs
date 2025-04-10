@@ -5,56 +5,65 @@ namespace ThievesAndPolice
 {
     internal class Program
     {
+        static int[,] array()
+        {
+            return new int[,]
+            { { RandomX(), RandomY() } };
+        }
+        static int RandomX()
+        {
+            // Returnerar ett random nummer mellan 1 och 48 för X-axeln
+            return Random.Shared.Next(1, 49);
+        }
+        static int RandomY()
+        {
+            // Returnerar ett random nummer mellan 0 och 22 för Y-axeln
+            return Random.Shared.Next(0, 23);
+        }
+
         public static List<Person> people = new List<Person>()
             {
-                new Thief("Tjuv1", array()),
-                new Police("1", array()),
+                new Citizen("Philip", array()),
+                new Citizen("Christofer", array()),
+                new Citizen("Viktor", array()),
+                new Citizen("Johannes", array()),
+                new Citizen("Lisa", array()),
+                new Citizen("Adam", array()),
+                new Citizen("Eva", array()),
+                new Citizen("Putin", array()),
+                new Citizen("Trump", array()),
+                new Citizen("Vladimir", array()),
+                new Citizen("Jesus", array()),
+                new Citizen("Johan", array()),
+                new Citizen("Sara", array()),
+                new Citizen("Johanna", array()),
+                new Citizen("Åsa", array()),
                 new Citizen("Anders", array()),
-                new Citizen("Anders", array()),
-                new Citizen("Anders", array()),
-                new Citizen("Anders", array()),
-                new Citizen("Anders", array()),
-                new Citizen("Anders", array()),
-                new Thief("Tjuv2", array()),
-                new Thief("Tjuv3", array()),
-                new Thief("Tjuv4", array()),
-                new Thief("Tjuv5", array()),
-                new Thief("Tjuv6", array()),
-                new Thief("Tjuv7", array()),
-                new Thief("Tjuv8", array()),
-                new Thief("Tjuv9", array()),
-                new Thief("Tjuv10", array()),
-                new Thief("Tjuv11", array()),
-                new Thief("Tjuv12", array()),
-                new Thief("Tjuv13", array()),
-                new Thief("Tjuv14", array()),
-                new Thief("Tjuv15", array()),
-                new Thief("Tjuv16", array()),
-                new Thief("Tjuv17", array()),
-                new Thief("Tjuv18", array()),
-                new Thief("Tjuv19", array()),
-                new Thief("Tjuv20", array()),
-                new Thief("Tjuv21", array()),
-                new Thief("Tjuv22", array()),
-                new Thief("Tjuv23", array()),
-                new Thief("Tjuv24", array()),
-                new Thief("Tjuv25", array()),
-                new Thief("Tjuv26", array()),
-                new Police("2", array()),
-                new Police("3", array()),
-                new Police("4", array()),
-                new Police("5", array()),
-                new Police("6", array()),
-                new Police("7", array()),
-                new Police("8", array()),
-                new Police("9", array()),
-                new Police("10", array()),
-                new Police("11", array()),
-                new Police("12", array()),
-                new Police("13", array()),
-                new Police("14", array()),
-                new Police("15", array()),
-                new Police("16", array()),
+                new Citizen("Markus", array()),
+                new Citizen("Dominik", array()),
+                new Citizen("Evenlina", array()),
+                new Citizen("Lennart", array()),
+
+                // Alla tjuvar har ju Aliases
+                new Thief("gr3k3n", array()),
+                new Thief("den fete", array()),
+                new Thief("Korven", array()),
+                new Thief("Tjorven", array()),
+                new Thief("Glömsker", array()),
+                new Thief("Blyger", array()),
+                new Thief("Prosit", array()),
+                new Thief("Glader", array()),
+                new Thief("Butter", array()),
+                new Thief("Toker", array()),
+                new Thief("Trötter", array()),
+                new Thief("Mästaren", array()),
+
+                new Police("Johansson", array()),
+                new Police("Johansson", array()),
+                new Police("Johansson", array()),
+                new Police("Johansson", array()),
+                new Police("Johansson", array()),
+                new Police("Johansson", array()),
             };
 
         public static List<Thief> thiefPrison = new List<Thief>()
@@ -62,6 +71,9 @@ namespace ThievesAndPolice
         };
 
         static Stack<string> NewsFeed = new Stack<string>();
+
+
+
 
         static void Main(string[] args)
         {
@@ -106,14 +118,14 @@ namespace ThievesAndPolice
                     {
                         if (people[j] is Thief thief && police.Position[0, 0] == thief.Position[0, 0] &&
                                 police.Position[0, 1] == thief.Position[0, 1] && thief.ThiefInventory.Count > 0)
-                        {                            
+                        {
                             police.IsArresting = true;
                             thief.IsArrested = true;
 
                             if (thief.IsArrested)
                             {
                                 if (thief.ThiefInventory.Count > 0)
-                                {                                    
+                                {
                                     foreach (var item in thief.ThiefInventory)
                                     {
                                         police.PoliceInventory.Push(item);
@@ -126,7 +138,7 @@ namespace ThievesAndPolice
                             }
 
                             NewsFeed.Push(police.Activity(thief.Name));
-                            
+
                         }
                     }
                     else if (people[i] is Thief thief)
@@ -246,7 +258,7 @@ namespace ThievesAndPolice
             int counter = 0;
             int number = 28; // till för att sätta vart utskriften skall vara
             Console.SetCursorPosition(14, 27);
-            Console.ForegroundColor= ConsoleColor.DarkBlue;
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine("Nyheter: ");
             Console.ResetColor();
 
@@ -259,7 +271,7 @@ namespace ThievesAndPolice
                         Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.SetCursorPosition(14, number);
                         Console.WriteLine(news);
-                        Console.ResetColor() ;
+                        Console.ResetColor();
                         counter++;
                         number++;
                     }
@@ -315,22 +327,6 @@ namespace ThievesAndPolice
                 thief.Position[0, 1] = Math.Clamp(thief.Position[0, 1], 1, 10); // y
 
             }
-        }
-
-        static int[,] array()
-        {
-            return new int[,]
-            { { RandomX(), RandomY() } };
-        }
-        static int RandomX()
-        {
-            // Returnerar ett random nummer mellan 1 och 48 för X-axeln
-            return Random.Shared.Next(1, 49);
-        }
-        static int RandomY()
-        {
-            // Returnerar ett random nummer mellan 0 och 22 för Y-axeln
-            return Random.Shared.Next(0, 23);
         }
 
     }
