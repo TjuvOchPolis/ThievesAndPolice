@@ -17,7 +17,7 @@ internal class Person
     public int[,] Position { get; set; }
     public virtual string Activity(string input)
     {
-        return $"Personen möter en annan Person                                                                                                       ";
+        return $"Personen möter en annan Person                                                  ";
     }
 
 }

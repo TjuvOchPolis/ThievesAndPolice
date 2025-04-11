@@ -75,6 +75,7 @@ namespace ThievesAndPolice
             Console.CursorVisible = false;
             Console.SetWindowSize(60, 40);
 
+            Console.ReadKey();
             while (true)
             {
                 Movement(); // Kordinater för City
@@ -82,10 +83,8 @@ namespace ThievesAndPolice
 
                 Logic(); // Kordinater för City
 
-                Newsfeed();
+                Newsfeed(); // Nyheter för allt som händer i staden
 
-                //Console.ReadKey();
-                //Console.Clear();
             }
         }
 
@@ -131,6 +130,7 @@ namespace ThievesAndPolice
 
                                 thiefPrison.Add(thief);
                                 toDelete.Add(thief);
+                                Thread.Sleep(1000);
                             }
 
                             NewsFeed.Push(police.Activity(thief.Name));
@@ -147,6 +147,7 @@ namespace ThievesAndPolice
                             thief.ThiefInventory.Push(items.Peek());
 
                             NewsFeed.Push(thief.Activity(citizen.Name));
+                            Thread.Sleep(1000);
                         }
                     }
                     else if (people[i] is Citizen citizen)
@@ -156,6 +157,7 @@ namespace ThievesAndPolice
                         {
 
                             NewsFeed.Push(citizen.Activity(police2.Name));
+                            Thread.Sleep(1000);
                         }
 
                     }

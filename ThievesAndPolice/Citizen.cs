@@ -11,10 +11,10 @@ internal class Citizen : Person
 {
     public Citizen(string name, int[,] pos) : base(name, pos)
     {
-        CitizenInvetory.Push(new Item("Wallet"));
-        CitizenInvetory.Push(new Item("Phone"));
-        CitizenInvetory.Push(new Item("Money"));
-        CitizenInvetory.Push(new Item("Watch"));
+        CitizenInvetory.Push(new Item("Plånbok"));
+        CitizenInvetory.Push(new Item("Telefon"));
+        CitizenInvetory.Push(new Item("Pengar"));
+        CitizenInvetory.Push(new Item("Klocka"));
     }
 
     public Stack<Item> CitizenInvetory = new Stack<Item>(); 
@@ -24,6 +24,6 @@ internal class Citizen : Person
 
     public override string Activity(string input)
     {
-        return $"{Name} hälsar på farbror blå                                                                                                 ";
+        return $"{Name} hälsar på farbror blå                                    ";
     }
 }
