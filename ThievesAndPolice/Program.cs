@@ -22,57 +22,52 @@ namespace ThievesAndPolice
         }
 
         public static List<Person> people = new List<Person>()
-            {
-                new Citizen("Philip", array()),
-                new Citizen("Christofer", array()),
-                new Citizen("Viktor", array()),
-                new Citizen("Johannes", array()),
-                new Citizen("Lisa", array()),
-                new Citizen("Adam", array()),
-                new Citizen("Eva", array()),
-                new Citizen("Putin", array()),
-                new Citizen("Trump", array()),
-                new Citizen("Vladimir", array()),
-                new Citizen("Jesus", array()),
-                new Citizen("Johan", array()),
-                new Citizen("Sara", array()),
-                new Citizen("Johanna", array()),
-                new Citizen("Åsa", array()),
-                new Citizen("Anders", array()),
-                new Citizen("Markus", array()),
-                new Citizen("Dominik", array()),
-                new Citizen("Evenlina", array()),
-                new Citizen("Lennart", array()),
-
-                // Alla tjuvar har ju Aliases
-                new Thief("gr3k3n", array()),
-                new Thief("den fete", array()),
-                new Thief("Korven", array()),
-                new Thief("Tjorven", array()),
-                new Thief("Glömsker", array()),
-                new Thief("Blyger", array()),
-                new Thief("Prosit", array()),
-                new Thief("Glader", array()),
-                new Thief("Butter", array()),
-                new Thief("Toker", array()),
-                new Thief("Trötter", array()),
-                new Thief("Mästaren", array()),
-
-                new Police("Johansson", array()),
-                new Police("Johansson", array()),
-                new Police("Johansson", array()),
-                new Police("Johansson", array()),
-                new Police("Johansson", array()),
-                new Police("Johansson", array()),
-            };
-
-        public static List<Thief> thiefPrison = new List<Thief>()
         {
+            new Citizen("Philip", array()),
+            new Citizen("Christofer", array()),
+            new Citizen("Viktor", array()),
+            new Citizen("Johannes", array()),
+            new Citizen("Lisa", array()),
+            new Citizen("Adam", array()),
+            new Citizen("Eva", array()),
+            new Citizen("Putin", array()),
+            new Citizen("Trump", array()),
+            new Citizen("Vladimir", array()),
+            new Citizen("Jesus", array()),
+            new Citizen("Johan", array()),
+            new Citizen("Sara", array()),
+            new Citizen("Johanna", array()),
+            new Citizen("Åsa", array()),
+            new Citizen("Anders", array()),
+            new Citizen("Markus", array()),
+            new Citizen("Dominik", array()),
+            new Citizen("Evenlina", array()),
+            new Citizen("Lennart", array()),
+
+            // Alla tjuvar har ju Aliases
+            new Thief("gr3k3n", array()),
+            new Thief("den fete", array()),
+            new Thief("Korven", array()),
+            new Thief("Tjorven", array()),
+            new Thief("Glömsker", array()),
+            new Thief("Blyger", array()),
+            new Thief("Prosit", array()),
+            new Thief("Glader", array()),
+            new Thief("Butter", array()),
+            new Thief("Toker", array()),
+            new Thief("Trötter", array()),
+            new Thief("Mästaren", array()),
+
+            new Police("Johansson", array()),
+            new Police("Johansson", array()),
+            new Police("Johansson", array()),
+            new Police("Johansson", array()),
+            new Police("Johansson", array()),
+            new Police("Johansson", array()),
         };
 
+        public static List<Thief> thiefPrison = new List<Thief>();
         static Stack<string> NewsFeed = new Stack<string>();
-
-
 
 
         static void Main(string[] args)
@@ -108,11 +103,11 @@ namespace ThievesAndPolice
 
             // för att kunna ta bort items och sätta tjuvar i finkan
             Stack<Item> items = new Stack<Item>();
-            List<string> name = new List<string>();   
-            
+            List<string> name = new List<string>();
+
             // PEOPLE INTERACTION LOGIC
             for (int i = 0; i < people.Count; i++)
-            {                
+            {
                 for (int j = 0; j < people.Count; j++)
                 {
                     if (people[i] is Police police)
@@ -147,7 +142,7 @@ namespace ThievesAndPolice
                         if (people[j] is Citizen citizen && thief.Position[0, 0] == citizen.Position[0, 0] &&
                                 thief.Position[0, 1] == citizen.Position[0, 1] && citizen.CitizenInvetory.Count > 0)
                         {
-                            name.Add(citizen.Name);                            
+                            name.Add(citizen.Name);
                             items.Push(citizen.CitizenInvetory.Peek());
                             thief.ThiefInventory.Push(items.Peek());
 
@@ -176,7 +171,7 @@ namespace ThievesAndPolice
                         citizen.CitizenInvetory.Pop();
                 }
             }
-            
+
 
             // För att programmet INTE skall krasha
             foreach (var p in toDelete)
