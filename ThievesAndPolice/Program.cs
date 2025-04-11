@@ -106,10 +106,11 @@ namespace ThievesAndPolice
 
             char[,] city = new char[maxHeight, maxWidth];
 
+            // för att kunna ta bort items och sätta tjuvar i finkan
             Stack<Item> items = new Stack<Item>();
-            string name = "";
+            List<string> name = new List<string>();   
+            
             // PEOPLE INTERACTION LOGIC
-
             for (int i = 0; i < people.Count; i++)
             {                
                 for (int j = 0; j < people.Count; j++)
@@ -146,7 +147,7 @@ namespace ThievesAndPolice
                         if (people[j] is Citizen citizen && thief.Position[0, 0] == citizen.Position[0, 0] &&
                                 thief.Position[0, 1] == citizen.Position[0, 1] && citizen.CitizenInvetory.Count > 0)
                         {
-                            name = citizen.Name;                            
+                            name.Add(citizen.Name);                            
                             items.Push(citizen.CitizenInvetory.Peek());
                             thief.ThiefInventory.Push(items.Peek());
 
@@ -166,10 +167,14 @@ namespace ThievesAndPolice
                 }
             }
 
+            //Tar bort item ifrån personen
             foreach (var person in people)
             {
-                if (person is Citizen citizen && citizen.Name == name)
-                    citizen.CitizenInvetory.Pop();
+                foreach (string n in name)
+                {
+                    if (person is Citizen citizen && citizen.Name == n)
+                        citizen.CitizenInvetory.Pop();
+                }
             }
             
 
@@ -274,7 +279,6 @@ namespace ThievesAndPolice
 
             }
         }
-
         public static void PrisonMovement()
         {
             Random rnd = new Random();
