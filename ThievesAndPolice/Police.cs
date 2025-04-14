@@ -28,7 +28,7 @@ internal class Police : Person
 
         int random = Random.Shared.Next(0, words.Count);
 
-       return $"Police: {Name} arresterar tjuven {input}. {input} blir förbannad {words[random]}";
+       return $"Polisen {Name} arresterar tjuven {input}. {input} blir förbannad {words[random]}";
         
     }
 
