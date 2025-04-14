@@ -130,7 +130,7 @@ namespace ThievesAndPolice
 
                                 thiefPrison.Add(thief);
                                 toDelete.Add(thief);
-                                Thread.Sleep(1000);
+                                //Thread.Sleep(2000);
                             }
 
                             NewsFeed.Push(police.Activity(thief.Name));
@@ -147,7 +147,7 @@ namespace ThievesAndPolice
                             thief.ThiefInventory.Push(items.Peek());
 
                             NewsFeed.Push(thief.Activity(citizen.Name));
-                            Thread.Sleep(2000);
+                            //Thread.Sleep(2000);
                         }
                     }
                     else if (people[i] is Citizen citizen)
@@ -157,7 +157,7 @@ namespace ThievesAndPolice
                         {
 
                             NewsFeed.Push(citizen.Activity(police2.Name));
-                            Thread.Sleep(2000);
+                            //Thread.Sleep(2000);
                         }
 
                     }
