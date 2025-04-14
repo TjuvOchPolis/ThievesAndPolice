@@ -224,6 +224,11 @@ namespace ThievesAndPolice
             // PRISON
             Prison.PrisonLogic(thiefPrison);
 
+            //Status
+            Console.WriteLine("Status: ");
+            Console.WriteLine($"Tjuvar: {people.Where(p => p is Thief).Count()}");
+            Console.WriteLine($"Poliser: {people.Where(p => p is Police).Count()}");
+            Console.WriteLine($"Medborgare: {people.Where(p => p is Citizen).Count()}");
         }
 
         public static void Newsfeed()
