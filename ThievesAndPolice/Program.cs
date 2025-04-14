@@ -69,6 +69,7 @@ namespace ThievesAndPolice
         public static List<Thief> thiefPrison = new List<Thief>();
         static Stack<string> NewsFeed = new Stack<string>();
 
+        static bool news = false;
 
         static void Main(string[] args)
         {
@@ -81,10 +82,15 @@ namespace ThievesAndPolice
                 Movement(); // Kordinater för City
                 PrisonMovement(); // Kordinater för Prison
 
+
                 Logic(); // Kordinater för City
 
-                Newsfeed(); // Nyheter för allt som händer i staden
-
+                if (news)
+                {
+                    Newsfeed(); // Nyheter för allt som händer i staden
+                    Thread.Sleep(1000);
+                    news = false;
+                }
             }
         }
 
@@ -130,10 +136,11 @@ namespace ThievesAndPolice
 
                                 thiefPrison.Add(thief);
                                 toDelete.Add(thief);
-                                Thread.Sleep(1000);
+                                NewsFeed.Push(police.Activity(thief.Name));
+
+                                //Thread.Sleep(1000);
                             }
 
-                            NewsFeed.Push(police.Activity(thief.Name));
 
                         }
                     }
@@ -147,7 +154,8 @@ namespace ThievesAndPolice
                             thief.ThiefInventory.Push(items.Peek());
 
                             NewsFeed.Push(thief.Activity(citizen.Name));
-                            Thread.Sleep(1000);
+
+                            //Thread.Sleep(1000);
                         }
                     }
                     else if (people[i] is Citizen citizen)
@@ -157,7 +165,8 @@ namespace ThievesAndPolice
                         {
 
                             NewsFeed.Push(citizen.Activity(police2.Name));
-                            Thread.Sleep(1000);
+
+                            //Thread.Sleep(1000);
                         }
 
                     }
@@ -170,7 +179,10 @@ namespace ThievesAndPolice
                 foreach (string n in name)
                 {
                     if (person is Citizen citizen && citizen.Name == n)
+                    {
                         citizen.CitizenInvetory.Pop();
+                        news = true;
+                    }
                 }
             }
 
@@ -179,6 +191,7 @@ namespace ThievesAndPolice
             foreach (var p in toDelete)
             {
                 people.Remove(p);
+                news = true;
             }
 
             for (int y = 0; y < city.GetLength(0); y++)
