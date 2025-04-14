@@ -137,8 +137,6 @@ namespace ThievesAndPolice
                                 thiefPrison.Add(thief);
                                 toDelete.Add(thief);
                                 NewsFeed.Push(police.Activity(thief.Name));
-
-                                //Thread.Sleep(1000);
                             }
 
 
@@ -155,8 +153,6 @@ namespace ThievesAndPolice
 
                             news = true;
                             NewsFeed.Push(thief.Activity(citizen.Name));
-
-                            //Thread.Sleep(1000);
                         }
                     }
                     else if (people[i] is Citizen citizen)
@@ -166,8 +162,6 @@ namespace ThievesAndPolice
                         {
                             news = true;
                             NewsFeed.Push(citizen.Activity(police2.Name));
-
-                            //Thread.Sleep(1000);
                         }
 
                     }
@@ -180,9 +174,7 @@ namespace ThievesAndPolice
                 foreach (string n in name)
                 {
                     if (person is Citizen citizen && citizen.Name == n)
-                    {
-                        citizen.CitizenInvetory.Pop();                        
-                    }
+                        citizen.CitizenInvetory.Pop();
                 }
             }
 
@@ -190,7 +182,7 @@ namespace ThievesAndPolice
             // För att programmet INTE skall krasha
             foreach (var p in toDelete)
             {
-                people.Remove(p);                
+                people.Remove(p);
             }
 
             for (int y = 0; y < city.GetLength(0); y++)
