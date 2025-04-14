@@ -41,7 +41,7 @@ namespace ThievesAndPolice
             new Citizen("Anders", array()),
             new Citizen("Markus", array()),
             new Citizen("Dominik", array()),
-            new Citizen("Evenlina", array()),
+            new Citizen("Evelina", array()),
             new Citizen("Lennart", array()),
 
             // Alla tjuvar har ju Aliases

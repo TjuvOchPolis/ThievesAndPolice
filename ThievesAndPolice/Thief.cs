@@ -17,7 +17,7 @@ internal class Thief : Person
 
     public override string Activity(string input)
     {
-        return $"Tjuven {Name} tar föremålet {ThiefInventory.Peek().Name} ifrån stackars {input}             ";
+        return $"Tjuven {Name} tar föremålet {ThiefInventory.Peek().Name} ifrån stackars {input}                                        ";
     }
 
 
