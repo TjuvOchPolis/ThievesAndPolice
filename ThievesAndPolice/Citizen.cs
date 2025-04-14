@@ -24,6 +24,6 @@ internal class Citizen : Person
 
     public override string Activity(string input)
     {
-        return $"{Name} hälsar på farbror blå                                                                                 ";
+        return $"{Name} hälsar på farbror blå                                                                                        ";
     }
 }
