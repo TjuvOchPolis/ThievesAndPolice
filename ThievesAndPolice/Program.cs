@@ -46,7 +46,7 @@ namespace ThievesAndPolice
 
             // Alla tjuvar har ju Aliases
             new Thief("gr3k3n", array()),
-            new Thief("den fete", array()),
+            new Thief("den klumpiga", array()),
             new Thief("Korven", array()),
             new Thief("Tjorven", array()),
             new Thief("Glömsker", array()),
